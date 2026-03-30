@@ -23,8 +23,16 @@
     <!-- FontAwesome (Minimalist Icons) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Spline 3D Viewer Component -->
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.36/build/spline-viewer.js"></script>
+    <!-- Spline 3D Viewer Component (desktop only) -->
+    <script>
+        if (window.innerWidth > 900) {
+            const s = document.createElement('script');
+            s.type = 'module';
+            s.src = 'https://unpkg.com/@splinetool/viewer@1.9.36/build/spline-viewer.js';
+            document.head.appendChild(s);
+        }
+    </script>
+
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/style.css">
