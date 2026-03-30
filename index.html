@@ -25,8 +25,14 @@
     
     <!-- Spline 3D Viewer Component (desktop only) -->
     <script>
-        if (window.innerWidth > 900) {
-            const s = document.createElement('script');
+        // If mobile: remove Spline from DOM before it ever tries to init
+        if (window.innerWidth <= 900) {
+            document.addEventListener('DOMContentLoaded', function() {
+                var bg = document.querySelector('.hero-3d-bg');
+                if (bg) bg.remove();
+            });
+        } else {
+            var s = document.createElement('script');
             s.type = 'module';
             s.src = 'https://unpkg.com/@splinetool/viewer@1.9.36/build/spline-viewer.js';
             document.head.appendChild(s);

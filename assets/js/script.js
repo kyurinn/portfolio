@@ -317,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!githubDataContainer) return;
 
         try {
-            const response = await fetch('https://api.github.com/users/mateocioppa');
+            const response = await fetch('https://api.github.com/users/kyurinn');
             if (!response.ok) throw new Error('API Rate Limit or Not Found');
             const data = await response.json();
 
