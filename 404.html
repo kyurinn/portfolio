@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Command Not Found | Mateo Cioppa</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    
+    <!-- Google Fonts: Inter & Syne -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Base Styles -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <style>
+        .error-page {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .terminal-404 {
+            width: 100%;
+            max-width: 600px;
+            background-color: #1a1b26; /* Fixed terminal color */
+            border-radius: 12px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+            overflow: hidden;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .error-code {
+            font-size: clamp(6rem, 15vw, 10rem);
+            font-family: var(--font-heading);
+            font-weight: 800;
+            color: var(--accent-color);
+            line-height: 1;
+            margin-bottom: 2rem;
+            opacity: 0.1;
+            position: absolute;
+            z-index: -1;
+            user-select: none;
+        }
+
+        .terminal-header {
+            background-color: #24283b;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .terminal-body {
+            padding: 2rem;
+            color: #a9b1d6;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .terminal-prompt { margin-bottom: 1rem; }
+        .terminal-prompt .user { color: #9ece6a; }
+        .terminal-prompt .dir { color: #7aa2f7; }
+
+        .error-msg {
+            color: #f7768e;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .suggestion {
+            color: #7dcfff;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background-color: #9ece6a;
+            color: #1a1b26;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .back-btn:hover {
+            background-color: #73daca;
+            transform: scale(1.05);
+        }
+
+        .cursor-blink {
+            display: inline-block;
+            width: 8px;
+            height: 1.2em;
+            background-color: #a9b1d6;
+            vertical-align: middle;
+            margin-left: 5px;
+            animation: blink 1s infinite step-end;
+        }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Minimal navbar for 404 */
+        .simple-nav {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="error-page-body">
+    <!-- Theme Toggle -->
+    <div class="simple-nav">
+        <button id="theme-toggle" class="theme-toggle magnetic-icon hover-target" aria-label="Cambiar tema">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Background Noise -->
+    <div class="noise-bg"></div>
+
+    <main class="error-page">
+        <div class="error-code">404</div>
+        
+        <div class="terminal-404" id="terminal">
+            <div class="terminal-header">
+                <span class="dot red" style="width: 12px; height: 12px; background: #f7768e; border-radius: 50%;"></span>
+                <span class="dot yellow" style="width: 12px; height: 12px; background: #e0af68; border-radius: 50%;"></span>
+                <span class="dot green" style="width: 12px; height: 12px; background: #9ece6a; border-radius: 50%;"></span>
+                <span style="font-size: 0.8rem; color: #565f89; margin-left: 10px;">guest@mateocioppa: ~</span>
+            </div>
+            <div class="terminal-body">
+                <p class="terminal-prompt"><span class="user">guest@mateocioppa</span>:<span class="dir">~</span>$ cd /pagina-inexistente</p>
+                <span class="error-msg">bash: cd: /pagina-inexistente: No existe el archivo o el directorio</span>
+                <p class="terminal-prompt"><span class="user">guest@mateocioppa</span>:<span class="dir">~</span>$ ls -a</p>
+                <span class="suggestion">¿Buscabas volver al inicio?</span>
+                <a href="/" class="back-btn">[ Volver al root ]</a>
+                <span class="cursor-blink"></span>
+            </div>
+        </div>
+    </main>
+
+    <!-- GSAP for small entrance -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme System
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            
+            if (currentTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                let theme = document.documentElement.getAttribute('data-theme');
+                if (theme === 'dark') {
+                    document.documentElement.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                }
+            });
+
+            // Entrance animation
+            gsap.to("#terminal", {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out",
+                delay: 0.3
+            });
+
+            gsap.from(".error-code", {
+                opacity: 0,
+                scale: 0.8,
+                duration: 1.5,
+                ease: "power2.out"
+            });
+        });
+    </script>
+</body>
+</html>
