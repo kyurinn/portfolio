@@ -12,13 +12,13 @@
   body {
     font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     color: #2b2b2b;
-    font-size: 10pt;
-    line-height: 1.45;
+    font-size: 9.5pt;
+    line-height: 1.38;
   }
   .page {
     width: 210mm; min-height: 297mm;
     margin: 0 auto;
-    padding: 12mm 13mm 10mm 13mm;
+    padding: 10mm 12mm 8mm 12mm;
   }
   @media screen {
     body { background: #e8e8e8; }
@@ -27,18 +27,18 @@
 
   /* ── Header: photo + name in one row, text lines full-width below ── */
   .header { display: flex; gap: 6mm; align-items: center; }
-  .photo { width: 40mm; height: 40mm; object-fit: cover; filter: grayscale(1); }
+  .photo { width: 35mm; height: 35mm; object-fit: cover; filter: grayscale(1); }
   .name {
     font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 900; font-size: 53pt; line-height: .96;
+    font-weight: 900; font-size: 46pt; line-height: .96;
     color: #111; letter-spacing: -.5pt;
   }
   .subtitle {
     font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 700; font-size: 12.5pt; color: #111;
-    margin-top: 2.5mm;
+    font-weight: 700; font-size: 11.5pt; color: #111;
+    margin-top: 2mm;
   }
-  .location { font-size: 10.5pt; color: #333; margin-top: .5mm; }
+  .location { font-size: 10pt; color: #333; margin-top: .5mm; }
   .contact { font-size: 9.5pt; font-style: italic; color: #333; margin-top: 1.5mm; }
   .contact a { color: #333; }
   li a { color: inherit; }
@@ -46,32 +46,32 @@
   /* ── Dark intro block ───────────────── */
   .intro {
     background: #3d3d3d; color: #f2f2f2;
-    padding: 6.5mm 7.5mm; margin-top: 5mm;
-    font-size: 10.2pt;
+    padding: 5mm 6mm; margin-top: 4mm;
+    font-size: 9.7pt;
   }
   .intro p + p { margin-top: 2.5mm; }
   .intro b { color: #fff; }
 
   /* ── Skills lines ───────────────────── */
-  .skills-lines { margin: 6mm 1mm; }
-  .skills-lines p { margin-bottom: 2.2mm; }
+  .skills-lines { margin: 4mm 1mm; }
+  .skills-lines p { margin-bottom: 1.6mm; }
   .skills-lines b { color: #111; }
 
   /* ── Section boxes ──────────────────── */
   .box {
     border: 1.6pt solid #3d3d3d;
-    padding: 5.5mm 6.5mm 6mm 6.5mm;
-    margin-top: 6mm;
+    padding: 4mm 5.5mm 4.5mm 5.5mm;
+    margin-top: 4.5mm;
     break-inside: avoid;
   }
   .box.dashed { border-style: dashed; border-width: 1.2pt; border-color: #888; }
   .box h2 {
     font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 700; font-size: 16.5pt; color: #111;
-    margin-bottom: 3.5mm;
+    font-weight: 700; font-size: 15pt; color: #111;
+    margin-bottom: 2.5mm;
   }
 
-  .entry { margin-bottom: 5.5mm; }
+  .entry { margin-bottom: 3.5mm; }
   .entry:last-child { margin-bottom: .5mm; }
   .entry-head { font-size: 10.3pt; margin-bottom: 1mm; }
   .entry-head .company { color: #8a8a8a; font-weight: 600; }
@@ -79,14 +79,15 @@
   .entry-head .meta { font-style: italic; color: #666; font-size: 9.4pt; }
   .entry > p { margin-bottom: .6mm; }
   ul { list-style: none; }
-  li { padding-left: 4mm; position: relative; margin-bottom: 1.4mm; }
+  li { padding-left: 4mm; position: relative; margin-bottom: .8mm; }
   li::before { content: "·"; position: absolute; left: .8mm; font-weight: 700; }
 
-  .edu-line { margin-bottom: 2.2mm; font-size: 10pt; }
+  .edu-line { margin-bottom: 1.6mm; font-size: 9.5pt; }
   .edu-line .kind { font-style: italic; color: #555; font-size: 9.2pt; }
   .edu-line b { color: #111; }
   .edu-line .dates { font-style: italic; color: #666; font-size: 9.4pt; }
-  .langs { margin-top: 3mm; font-size: 10pt; }
+  .langs { margin-top: 2mm; font-size: 9.5pt; }
+@media print { .page { min-height: auto; } }
 </style>
 </head>
 <body>
