@@ -1,3 +1,14 @@
+/* Easter egg: para quien abre DevTools (o sea, vos) */
+console.log(`%c
+  __  __   ____
+ |  \\/  | / ___|
+ | |\\/| || |
+ | |  | || |___
+ |_|  |_| \\____|
+`, 'color:#7aa2f7; font-family:monospace');
+console.log('%c¿Chusmeando la consola? Me gusta cómo pensás.', 'font-size:14px; font-weight:bold;');
+console.log('→ mateo.cioppa1@gmail.com · https://github.com/kyurinn/portfolio');
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // Register GSAP plugins
@@ -12,8 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = themeToggle.querySelector('i');
     
-    // Check local storage for theme
-    const currentTheme = localStorage.getItem('theme') || 'light';
+    // Check local storage for theme; first visit follows the system preference
+    const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const currentTheme = localStorage.getItem('theme') || systemTheme;
     
     // Apply initial theme
     if (currentTheme === 'dark') {
@@ -317,43 +329,138 @@ document.addEventListener('DOMContentLoaded', () => {
     } // end !prefersReducedMotion
 
     /* ==========================================================================
-       7. Terminal Contact Form Logic
+       7. Interactive Terminal
        ========================================================================== */
-    const terminalForm = document.getElementById('terminal-form');
-    if (terminalForm) {
-        terminalForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const emailInput = document.getElementById('terminal-email');
-            const messageInput = document.getElementById('terminal-message');
-            const outputArea = document.querySelector('.terminal-output');
-            const submitBtn = document.querySelector('.terminal-btn');
+    const termBody = document.getElementById('terminal-body');
+    const termLog = document.getElementById('terminal-log');
+    const termInput = document.getElementById('terminal-cmd');
 
-            if (emailInput.value && messageInput.value) {
-                // Simulate terminal processing
-                outputArea.innerHTML = `<span style="color: #e0af68;">[*] Parseando datos...</span>`;
-                submitBtn.disabled = true;
-                
-                setTimeout(() => {
-                    outputArea.innerHTML = `<span style="color: #e0af68;">[*] Parseando datos... OK</span><br><span style="color: #7dcfff;">[*] Preparando cliente de correo...</span>`;
-                }, 500);
+    if (termBody && termLog && termInput) {
+        const EMAIL = 'mateo.cioppa1@gmail.com';
+        let contactStep = null;   // null | 'email' | 'message'
+        let contactEmail = '';
 
-                setTimeout(() => {
-                    outputArea.innerHTML = `<span style="color: #9ece6a;">[✓] Redirigiendo a tu cliente de correo. ¡Gracias!</span>`;
-                    
-                    // Actually trigger the mailto link
-                    const mailtoLink = `mailto:mateo.cioppa1@gmail.com?subject=Contacto desde Portfolio (Terminal)&body=${encodeURIComponent("Email del remitente: " + emailInput.value + "\n\nMensaje:\n" + messageInput.value)}`;
-                    window.location.href = mailtoLink;
-                    
-                    // Reset inputs after sending
-                    setTimeout(() => {
-                        emailInput.value = '';
-                        messageInput.value = '';
-                        submitBtn.disabled = false;
-                        outputArea.innerHTML = `Listo para una nueva conexión.`;
-                    }, 3000);
-                }, 1500);
+        // Trusted strings only: command output we wrote ourselves
+        const println = (html, color) => {
+            const p = document.createElement('p');
+            p.className = 'term-line';
+            if (color) p.style.color = color;
+            p.innerHTML = html;
+            termLog.appendChild(p);
+            termBody.scrollTop = termBody.scrollHeight;
+        };
+
+        // User input is echoed as a text node, never parsed as HTML
+        const echo = (cmd) => {
+            const p = document.createElement('p');
+            p.className = 'term-line';
+            p.innerHTML = '<span class="user">guest@mateocioppa</span>:<span class="dir">~</span>$ ';
+            p.appendChild(document.createTextNode(cmd));
+            termLog.appendChild(p);
+            termBody.scrollTop = termBody.scrollHeight;
+        };
+
+        const COMMANDS = {
+            help() {
+                println('Comandos disponibles:');
+                println('&nbsp;&nbsp;<b>sobre</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quién soy');
+                println('&nbsp;&nbsp;<b>stack</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;con qué construyo');
+                println('&nbsp;&nbsp;<b>orbitup</b>&nbsp;&nbsp;&nbsp;el proyecto');
+                println('&nbsp;&nbsp;<b>cv</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abre mi CV');
+                println('&nbsp;&nbsp;<b>contacto</b>&nbsp;&nbsp;mandame un mensaje');
+                println('&nbsp;&nbsp;<b>whoami</b>&nbsp;&nbsp;&nbsp;&nbsp;quién sos vos');
+                println('&nbsp;&nbsp;<b>clear</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;limpiar pantalla');
+            },
+            sobre() {
+                println('Estudiante de Ingeniería en Computación (UNLP) y co-fundador de OrbitUp.');
+                println('Construyo productos de punta a punta, con IA en el centro del flujo.');
+            },
+            stack() {
+                println('Claude Code · Gemini API · Node.js · React Native (Expo) · React · MongoDB · Railway · Vercel');
+            },
+            orbitup() {
+                println('EdTech de cero a producción: <b>+800 usuarios</b>, <b>+3.000 tests</b>, deploys semanales.');
+                println('→ <a href="https://apps.apple.com/ar/app/orbitup/id6756928952" target="_blank" rel="noopener noreferrer">App Store</a> · <a href="https://play.google.com/store/apps/details?id=com.orbitup.mobile" target="_blank" rel="noopener noreferrer">Google Play</a>');
+            },
+            cv() {
+                println('Abriendo CV...', '#9ece6a');
+                window.open('/cv', '_blank', 'noopener');
+            },
+            contacto() {
+                contactStep = 'email';
+                termInput.placeholder = 'tu@email.com';
+                println('Iniciando protocolo de contacto (tipeá <b>cancelar</b> para salir).');
+                println('¿Tu email?', '#7dcfff');
+            },
+            whoami() {
+                println('guest. Pero si llegaste hasta acá, capaz seas mi próximo empleador.');
+            },
+            clear() {
+                termLog.innerHTML = '';
+            }
+        };
+
+        const sudoHire = () => {
+            println('[sudo] password para guest:');
+            setTimeout(() => println('********'), 400);
+            setTimeout(() => {
+                println('Permiso concedido ✓ Abriendo canal directo...', '#9ece6a');
+                window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent('Quiero contratarte')}`;
+            }, 900);
+        };
+
+        const run = (raw) => {
+            const cmd = raw.trim();
+            echo(cmd);
+            if (!cmd) return;
+
+            // Guided contact flow
+            if (contactStep) {
+                if (cmd.toLowerCase() === 'cancelar') {
+                    contactStep = null;
+                    termInput.placeholder = 'help';
+                    println('Protocolo cancelado.');
+                    return;
+                }
+                if (contactStep === 'email') {
+                    if (!/^\S+@\S+\.\S+$/.test(cmd)) {
+                        println('Eso no parece un email. Probá de nuevo (o <b>cancelar</b>).', '#f7768e');
+                        return;
+                    }
+                    contactEmail = cmd;
+                    contactStep = 'message';
+                    termInput.placeholder = 'Escribí tu mensaje y Enter';
+                    println('¿Tu mensaje?', '#7dcfff');
+                    return;
+                }
+                // message
+                const body = `Email del remitente: ${contactEmail}\n\nMensaje:\n${cmd}`;
+                println('Redirigiendo a tu cliente de correo. ¡Gracias!', '#9ece6a');
+                window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent('Contacto desde Portfolio (Terminal)')}&body=${encodeURIComponent(body)}`;
+                contactStep = null;
+                termInput.placeholder = 'help';
+                return;
+            }
+
+            const lower = cmd.toLowerCase();
+            if (lower === 'sudo contratar-mateo') return sudoHire();
+            if (lower.startsWith('sudo')) {
+                println('guest no está en el archivo sudoers. Este incidente será reportado.', '#f7768e');
+                println('(mentira: probá <b>sudo contratar-mateo</b>)');
+                return;
+            }
+            const handler = COMMANDS[lower];
+            if (handler) return handler();
+            println(`bash: comando no encontrado. Tipeá <b>help</b>.`, '#f7768e');
+        };
+
+        termInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                run(termInput.value);
+                termInput.value = '';
             }
         });
+        termBody.addEventListener('click', () => termInput.focus());
     }
     
     // Refresh ScrollTrigger on load to recalculate geometry accurately

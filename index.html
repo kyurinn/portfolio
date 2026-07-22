@@ -135,6 +135,20 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Now / qué estoy haciendo hoy -->
+                    <div class="github-stats-card now-card fade-up mt-4 hover-target">
+                        <div class="github-header">
+                            <i class="fas fa-location-arrow"></i>
+                            <span>Ahora</span>
+                        </div>
+                        <ul class="now-list">
+                            <li>Cursando Ingeniería en Computación en la UNLP.</li>
+                            <li>Programa NAVES en el IAE Business School.</li>
+                            <li>Buscando mi próximo desafío part-time.</li>
+                        </ul>
+                        <span class="now-updated">Actualizado: julio 2026</span>
+                    </div>
                 </div>
             </div>
             
@@ -351,25 +365,14 @@
                         <span class="terminal-title">guest@mateocioppa: ~</span>
                         <div class="spacer"></div>
                     </div>
-                    <div class="terminal-body">
-                        <p class="terminal-prompt"><span class="user">guest@mateocioppa</span>:<span class="dir">~</span>$ ./iniciar_contacto.sh</p>
-                        <p class="terminal-output">Conexión establecida. Protocolo de mensajes listo.</p>
-                        
-                        <form id="terminal-form" class="terminal-form">
-                            <div class="input-line">
-                                <span class="prompt-arrow">></span>
-                                <input type="email" id="terminal-email" required placeholder="tu@email.com" class="terminal-input hover-target" autocomplete="off">
-                            </div>
-                            <div class="input-line textarea-line">
-                                <span class="prompt-arrow">></span>
-                                <textarea id="terminal-message" rows="3" required placeholder="Escribe tu mensaje aquí..." class="terminal-input hover-target"></textarea>
-                            </div>
-                            <div class="terminal-action">
-                                <button type="submit" class="terminal-btn magnetic-btn hover-target">
-                                    [ Ejecutar SendMessage ] <i class="fas fa-paper-plane" style="margin-left: 8px;"></i>
-                                </button>
-                            </div>
-                        </form>
+                    <div class="terminal-body" id="terminal-body">
+                        <p class="terminal-prompt"><span class="user">guest@mateocioppa</span>:<span class="dir">~</span>$ ./bienvenida.sh</p>
+                        <p class="terminal-output">Terminal interactiva lista. Tipeá <strong>help</strong> y apretá Enter.</p>
+                        <div id="terminal-log" aria-live="polite"></div>
+                        <div class="input-line">
+                            <span class="prompt-arrow">></span>
+                            <input type="text" id="terminal-cmd" class="terminal-input hover-target" placeholder="help" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Terminal interactiva: escribí un comando y apretá Enter">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -385,6 +388,7 @@
                     <a href="https://www.linkedin.com/in/mateo-cioppa/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="magnetic-icon hover-target" title="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <p class="copyright">Diseñado y construido por Mateo Cioppa &copy; 2026</p>
+                <p class="colophon">HTML plano · 0 frameworks · CSP estricta · WebP · reduced-motion — <a href="https://github.com/kyurinn/portfolio" target="_blank" rel="noopener noreferrer">ver el código</a></p>
             </div>
         </div>
     </footer>

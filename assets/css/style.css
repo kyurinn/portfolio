@@ -1070,3 +1070,66 @@ html.theme-transition *::after {
 @media (max-width: 768px) {
     .project-shots img { max-width: 30%; width: auto; }
 }
+
+/* ==========================================================================
+   Interactive Terminal log, Now card & Colophon
+   ========================================================================== */
+.terminal-body {
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+.term-line {
+    color: #c0caf5;
+    margin-bottom: 6px;
+    overflow-wrap: anywhere;
+}
+
+.term-line a {
+    color: #7dcfff;
+}
+
+.term-line .user { color: #9ece6a; }
+.term-line .dir { color: #7aa2f7; }
+
+.now-card {
+    margin-left: 1rem;
+    vertical-align: top;
+}
+
+.now-list {
+    list-style: none;
+    font-size: 0.95rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.now-list li::before {
+    content: "\25B8";
+    margin-right: 8px;
+    color: var(--text-light);
+}
+
+.now-updated {
+    display: block;
+    margin-top: 0.8rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+    .now-card {
+        margin-left: 0;
+    }
+}
+
+.colophon {
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--text-light);
+}
+
+.colophon a {
+    color: inherit;
+}
