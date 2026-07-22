@@ -10,6 +10,8 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { background: #fff; }
   body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
     font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     color: #2b2b2b;
     font-size: 9.5pt;
@@ -41,10 +43,12 @@
   .location { font-size: 10pt; color: #333; margin-top: .5mm; }
   .contact { font-size: 9.5pt; font-style: italic; color: #333; margin-top: 1.5mm; }
   .contact a { color: #333; }
-  li a { color: inherit; }
+  li a { color: inherit; text-decoration-color: #aaa; }
 
   /* ── Dark intro block ───────────────── */
   .intro {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
     background: #3d3d3d; color: #f2f2f2;
     padding: 5mm 6mm; margin-top: 4mm;
     font-size: 9.7pt;
