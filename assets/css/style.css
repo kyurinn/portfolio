@@ -1049,3 +1049,24 @@ html.theme-transition *::after {
     .about-content p { font-size: 1.15rem; }
     .marquee-text { font-size: 3rem; }
 }
+
+/* ==========================================================================
+   Project screenshots strip
+   ========================================================================== */
+.project-shots {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+.project-shots img {
+    width: 200px;
+    max-width: 28%;
+    border-radius: 18px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+}
+@media (max-width: 768px) {
+    .project-shots img { max-width: 30%; width: auto; }
+}
