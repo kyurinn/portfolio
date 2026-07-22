@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Register GSAP plugins
     gsap.registerPlugin(ScrollTrigger);
 
+    // Respect the user's motion preference: skip decorative animations entirely
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     /* ==========================================================================
        0. Dark Mode System
        ========================================================================== */
@@ -53,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hoverTargets = document.querySelectorAll('.hover-target, a, button');
 
     // Only run cursor logic on desktop
-    if (window.innerWidth > 1023) {
+    if (window.innerWidth > 1023 && !prefersReducedMotion) {
         // Move cursors
         let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
 
@@ -146,11 +149,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             navbar.classList.remove('scrolled');
         }
-    });
+    }, { passive: true });
 
     /* ==========================================================================
        4. GSAP "Full Facheras" Animations
+       (skipped entirely under prefers-reduced-motion: content is visible by default)
        ========================================================================== */
+    if (!prefersReducedMotion) {
        
     // a. Hero Initial Reveal Animation
     const heroTl = gsap.timeline({ defaults: { ease: "power4.out" } });
@@ -308,6 +313,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ease: "none"
         });
     }
+
+    } // end !prefersReducedMotion
 
     /* ==========================================================================
        7. Terminal Contact Form Logic
