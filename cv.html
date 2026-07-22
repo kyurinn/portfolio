@@ -15,12 +15,12 @@
     font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     color: #2b2b2b;
     font-size: 9.5pt;
-    line-height: 1.33;
+    line-height: 1.36;
   }
   .page {
     width: 210mm; min-height: 297mm;
     margin: 0 auto;
-    padding: 8mm 12mm 6mm 12mm;
+    padding: 9mm 12mm 7mm 12mm;
   }
   @media screen {
     body { background: #e8e8e8; }
@@ -29,10 +29,10 @@
 
   /* ── Header: photo + name in one row, text lines full-width below ── */
   .header { display: flex; gap: 6mm; align-items: center; }
-  .photo { width: 32mm; height: 32mm; object-fit: cover; filter: grayscale(1); }
+  .photo { width: 33mm; height: 33mm; object-fit: cover; filter: grayscale(1); }
   .name {
     font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 900; font-size: 43pt; line-height: .96;
+    font-weight: 900; font-size: 44pt; line-height: .96;
     color: #111; letter-spacing: -.5pt;
   }
   .subtitle {
@@ -50,32 +50,32 @@
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
     background: #3d3d3d; color: #f2f2f2;
-    padding: 4mm 5.5mm; margin-top: 3.5mm;
+    padding: 4.5mm 6mm; margin-top: 4mm;
     font-size: 9.5pt;
   }
-  .intro p + p { margin-top: 1.8mm; }
+  .intro p + p { margin-top: 2.2mm; }
   .intro b { color: #fff; }
 
   /* ── Skills lines ───────────────────── */
-  .skills-lines { margin: 3mm 1mm; }
+  .skills-lines { margin: 3.5mm 1mm; }
   .skills-lines p { margin-bottom: 1.6mm; }
   .skills-lines b { color: #111; }
 
   /* ── Section boxes ──────────────────── */
   .box {
     border: 1.6pt solid #3d3d3d;
-    padding: 3.5mm 5mm 4mm 5mm;
-    margin-top: 3.5mm;
+    padding: 4mm 5.5mm 4.5mm 5.5mm;
+    margin-top: 4mm;
     break-inside: avoid;
   }
   .box.dashed { border-style: dashed; border-width: 1.2pt; border-color: #888; }
   .box h2 {
     font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 700; font-size: 14pt; color: #111;
-    margin-bottom: 2mm;
+    font-weight: 700; font-size: 14.5pt; color: #111;
+    margin-bottom: 2.2mm;
   }
 
-  .entry { margin-bottom: 2.8mm; }
+  .entry { margin-bottom: 3.2mm; }
   .entry:last-child { margin-bottom: .5mm; }
   .entry-head { font-size: 10.3pt; margin-bottom: 1mm; }
   .entry-head .company { color: #8a8a8a; font-weight: 600; }
@@ -86,7 +86,7 @@
   li { padding-left: 4mm; position: relative; margin-bottom: .8mm; }
   li::before { content: "·"; position: absolute; left: .8mm; font-weight: 700; }
 
-  .edu-line { margin-bottom: 1.2mm; font-size: 9.5pt; }
+  .edu-line { margin-bottom: 1.4mm; font-size: 9.5pt; }
   .edu-line .kind { font-style: italic; color: #555; font-size: 9.2pt; }
   .edu-line b { color: #111; }
   .edu-line .dates { font-style: italic; color: #666; font-size: 9.4pt; }
