@@ -1063,6 +1063,7 @@ html.theme-transition *::after {
 .project-shots img {
     width: 200px;
     max-width: 28%;
+    height: auto;
     border-radius: 18px;
     border: 1px solid var(--border-color);
     box-shadow: 0 8px 30px rgba(0,0,0,0.18);
