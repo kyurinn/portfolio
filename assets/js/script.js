@@ -310,55 +310,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       6. GitHub Live Data Fetch
-       ========================================================================== */
-    const fetchGitHubData = async () => {
-        const githubDataContainer = document.getElementById('github-data');
-        if (!githubDataContainer) return;
-
-        try {
-            const response = await fetch('https://api.github.com/users/kyurinn');
-            if (!response.ok) throw new Error('API Rate Limit or Not Found');
-            const data = await response.json();
-
-            githubDataContainer.innerHTML = `
-                <div class="github-stat">
-                    <span class="github-stat-label">Repos Publicos</span>
-                    <span class="github-stat-value">${data.public_repos}</span>
-                </div>
-                <div class="github-stat">
-                    <span class="github-stat-label">Seguidores</span>
-                    <span class="github-stat-value">${data.followers}</span>
-                </div>
-                <div class="github-stat">
-                    <span class="github-stat-label">Ubicación</span>
-                    <span class="github-stat-value">${data.location || 'N/A'}</span>
-                </div>
-            `;
-        } catch (error) {
-            // Fallback gracefully if API fails (e.g. Rate Limit)
-            githubDataContainer.innerHTML = `
-                <div class="github-stat">
-                    <span class="github-stat-label">Repos Publicos</span>
-                    <span class="github-stat-value">12</span>
-                </div>
-                <div class="github-stat">
-                    <span class="github-stat-label">Seguidores</span>
-                    <span class="github-stat-value">45</span>
-                </div>
-                <div class="github-stat">
-                    <span class="github-stat-label">Estado de Red</span>
-                    <span class="github-stat-value" style="color: #9ece6a;">Operativo</span>
-                </div>
-            `;
-            console.warn('Usando datos de fallback por límite de API Github.');
-        }
-    };
-    
-    // Slight delay so it doesn't block the main thread visually on load
-    setTimeout(fetchGitHubData, 800);
-
-    /* ==========================================================================
        7. Terminal Contact Form Logic
        ========================================================================== */
     const terminalForm = document.getElementById('terminal-form');
