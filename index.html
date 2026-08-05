@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Hanken+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./assets/css/new-portfolio.css" />
+  <link rel="stylesheet" href="./assets/css/main.css" />
 </head>
 <body>
   <div id="world" aria-hidden="true"></div>
@@ -16,108 +16,194 @@
   <div class="scan" aria-hidden="true"></div>
 
   <header class="site-header">
-    <a class="brand" href="#"><span class="dot"></span> ONLINE</a>
-    <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">Menu</button>
+    <a class="brand" href="#"><span class="dot"></span> SYSTEM.ONLINE</a>
     <nav class="site-nav" id="site-nav">
-      <button data-open="about">About</button>
-      <button data-open="work">Work</button>
-      <button data-open="stack">Stack</button>
-      <button data-open="contact">Contact</button>
+      <button data-open="about">About me</button>
+      <button data-open="work">What I build</button>
+      <button data-open="stack">What I know</button>
+      <button data-open="contact">Talk to me</button>
     </nav>
   </header>
 
   <main class="hud" id="hud">
-    <div class="hud-index"><span class="label">Portfolio</span><span class="bar"></span></div>
+    <div class="hud-index"><span class="label">AI Engineer</span><span class="bar"></span></div>
     <h1 class="name">Mateo <em>Cioppa</em></h1>
-    <p class="kicker">AI Systems • Product Engineering • Fast Shipping</p>
-    <p class="lead">
-      I build AI products that turn messy workflows into clear outcomes.
-      Co-founder of OrbitUp. Engineering student. Product-first execution.
-    </p>
-    <p class="type-line"><span class="type-pre">NOW:</span> <span id="type-line-text"></span></p>
-    <div class="hero-actions">
-      <button class="btn btn-primary" data-open="work">See selected work</button>
-      <a class="btn btn-ghost" href="./cv.html" target="_blank" rel="noopener noreferrer">Open CV</a>
-    </div>
+    <p class="kicker">Est. Argentina // Builder & Founder</p>
+    <p class="type-line"><span class="type-pre">→</span> <span id="type-line-text"></span></p>
   </main>
 
   <div class="hotspots" id="hotspots">
-    <button class="hotspot" data-open="about"><span></span>About</button>
-    <button class="hotspot" data-open="work"><span></span>Work</button>
+    <button class="hotspot" data-open="about"><span></span>Architecture</button>
+    <button class="hotspot" data-open="work"><span></span>Execution</button>
     <button class="hotspot" data-open="stack"><span></span>Stack</button>
-    <button class="hotspot" data-open="contact"><span></span>Contact</button>
+    <button class="hotspot" data-open="contact"><span></span>Network</button>
   </div>
 
   <aside class="panel" id="panel-about" aria-hidden="true">
-    <button class="panel-close" data-close>Close</button>
-    <div class="panel-head">
-      <h2>About</h2>
-      <p class="panel-mark">01</p>
+    <button class="panel-close" data-close>Close ✕</button>
+    <div class="sec-head">
+      <h2>About <em>me</em></h2>
+      <p class="panel-mark">Architecture</p>
     </div>
-    <p>
-      I am Mateo Cioppa, based in Argentina. I combine product intuition with engineering discipline:
-      from concept, to architecture, to deployment. I focus on modern digital experiences with AI at the core.
-    </p>
-    <div class="about-stats">
-      <article><strong>800+</strong><span>OrbitUp users</span></article>
-      <article><strong>3,000+</strong><span>Practice tests delivered</span></article>
-      <article><strong>Weekly</strong><span>Product releases</span></article>
+    
+    <div class="meta">
+      <div class="meta-cols">
+        <div><span class="label">Field</span><b>AI Systems<br>Product Engineering</b></div>
+        <div><span class="label">Based</span><b>Argentina</b></div>
+      </div>
+      <p class="disc-line">Software Engineering <span class="s">//</span> Product Strategy <span class="s">//</span> Scalability <span class="s">//</span> Growth</p>
+    </div>
+    
+    <div style="margin-top: 38px; border-top: 1px solid var(--line); padding-top: 38px;">
+      <p style="margin-bottom: 16px;">I combine product intuition with engineering discipline: from concept, to architecture, to deployment. I focus on modern digital experiences with AI at the core.</p>
+      <p>I build AI products that turn messy workflows into clear outcomes. Currently focusing my efforts on scaling EdTech solutions as the Co-founder of OrbitUp.</p>
     </div>
   </aside>
 
   <aside class="panel" id="panel-work" aria-hidden="true">
-    <button class="panel-close" data-close>Close</button>
-    <div class="panel-head">
-      <h2>Selected Work</h2>
-      <p class="panel-mark">02</p>
+    <button class="panel-close" data-close>Close ✕</button>
+    <div class="sec-head">
+      <h2>What I <em>build</em></h2>
+      <p class="panel-mark">Execution</p>
     </div>
-    <article class="project-card">
-      <div class="project-media">
-        <img src="./assets/img/orbitup-practica.webp" alt="OrbitUp mobile app practice screen" loading="lazy" />
-      </div>
-      <div class="project-body">
-        <p class="project-tag">Flagship Product</p>
-        <h3>OrbitUp</h3>
-        <p>
-          EdTech platform built end-to-end: mobile app, backend, content operations, analytics, and growth.
-          Deployed continuously with a quality-first workflow.
-        </p>
-        <div class="project-links">
-          <a href="https://apps.apple.com/ar/app/orbitup/id6756928952" target="_blank" rel="noopener noreferrer">App Store</a>
-          <a href="https://play.google.com/store/apps/details?id=com.orbitup.mobile" target="_blank" rel="noopener noreferrer">Google Play</a>
+    
+    <div class="work-item">
+      <div class="txt">
+        <div class="w-idx">FLAGSHIP PRODUCT</div>
+        <h3>OrbitUp <em>EdTech Platform</em></h3>
+        <p>End-to-end platform built with React Native and Node.js. Incorporates content operations, analytics, and AI growth engines. Deployed continuously with a quality-first workflow.</p>
+        <div class="tagrow">
+          <span class="tag">Mobile App</span><span class="tag">Backend</span><span class="tag">AI Generation</span><span class="tag">Analytics</span>
         </div>
       </div>
-    </article>
+      <div class="plate">
+        <div class="p-head">
+          <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
+          <div class="p-title">orbitup_metrics.js</div>
+        </div>
+        <pre class="p-body"><span class="k">import</span> { AppMetrics, Analytics } <span class="k">from</span> <span class="s">'@orbitup/core'</span>;
+
+<span class="k">const</span> stats = <span class="k">await</span> AppMetrics.<span class="f">getWeekly</span>();
+
+<span class="f">console</span>.<span class="f">log</span>(<span class="s">`Active Users: <span class="o">${stats.users}</span>`</span>);
+<span class="f">console</span>.<span class="f">log</span>(<span class="s">`Tests Delivered: <span class="o">${stats.tests}</span>`</span>);
+
+<span class="c">// => Active Users: 800+</span>
+<span class="c">// => Tests Delivered: 3,000+</span>
+
+<span class="k">if</span> (stats.growth > <span class="n">0.1</span>) {
+  Analytics.<span class="f">triggerEvent</span>(<span class="s">"Scaling infrastructure..."</span>);
+}</pre>
+      </div>
+    </div>
+
+    <div class="work-item">
+      <div class="txt">
+        <div class="w-idx">PRODUCTION PIPELINES</div>
+        <h3>Agentic <em>Systems</em> & Automation</h3>
+        <p>Designing workflows where AI agents handle repetitive operations, leveraging tools like Claude Code and Gemini API to maximize velocity.</p>
+        <div class="tagrow">
+          <span class="tag">Claude Code</span><span class="tag">Gemini API</span><span class="tag">Workflow Automation</span>
+        </div>
+      </div>
+      <div class="plate">
+        <div class="p-head">
+          <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
+          <div class="p-title">bash: deployment</div>
+        </div>
+        <pre class="p-body"><span class="k">$</span> vercel deploy --prod
+
+<span class="o">Vercel CLI 32.0.1</span>
+<span class="o">Building project...</span>
+<span class="o">✓ Edge Functions compiled successfully</span>
+<span class="o">✓ Deployment complete.</span>
+<span class="o">URL: https://mateocioppa.com</span>
+
+<span class="k">$</span> git commit -m <span class="s">"Shipped new AI features"</span>
+<span class="k">$</span> git push origin main</pre>
+      </div>
+    </div>
   </aside>
 
   <aside class="panel" id="panel-stack" aria-hidden="true">
-    <button class="panel-close" data-close>Close</button>
-    <div class="panel-head">
-      <h2>Tech Stack</h2>
-      <p class="panel-mark">03</p>
+    <button class="panel-close" data-close>Close ✕</button>
+    <div class="sec-head">
+      <h2>What I <em>know</em></h2>
+      <p class="panel-mark">Stack</p>
+    </div>
+    
+    <div style="margin-bottom: 24px; font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase;">
+      Core Technologies
     </div>
     <div class="stack-grid">
-      <span>Claude Code</span><span>Gemini API</span><span>Node.js</span><span>React Native (Expo)</span>
-      <span>React</span><span>MongoDB</span><span>Railway</span><span>Vercel</span>
-      <span>JavaScript / TypeScript</span><span>Automation</span><span>Product Thinking</span>
+      <div class="stack-card">Node.js</div>
+      <div class="stack-card">React Native (Expo)</div>
+      <div class="stack-card">React</div>
+      <div class="stack-card">TypeScript</div>
+      <div class="stack-card">JavaScript</div>
+      <div class="stack-card">Python</div>
+      <div class="stack-card">MongoDB</div>
+      <div class="stack-card">Vercel</div>
+      <div class="stack-card">Railway</div>
+      <div class="stack-card">Claude Code</div>
+      <div class="stack-card">Gemini API</div>
+      <div class="stack-card">Git</div>
     </div>
   </aside>
 
   <aside class="panel" id="panel-contact" aria-hidden="true">
-    <button class="panel-close" data-close>Close</button>
-    <div class="panel-head">
-      <h2>Contact</h2>
-      <p class="panel-mark">04</p>
+    <button class="panel-close" data-close>Close ✕</button>
+    <div class="sec-head">
+      <h2>Talk to <em>me</em></h2>
+      <p class="panel-mark">Network</p>
     </div>
-    <p class="contact-head">Let’s build something great.</p>
-    <p>If you’re hiring or building a serious product, I’m in.</p>
-    <a class="btn btn-primary" href="mailto:mateo.cioppa1@gmail.com?subject=Let%27s%20work%20together">Send email</a>
+    
+    <div style="margin-top: 40px; margin-bottom: 40px;">
+      <h2 style="font-size: clamp(2.2rem, 6vw, 3.5rem); margin-bottom: 10px;">Let's build<br>something <em>sharp.</em></h2>
+      <p style="color: var(--text);">If you're hiring or building a serious product, I'm in.</p>
+    </div>
+    
+    <div class="links">
+      <a class="lk" href="mailto:mateo.cioppa1@gmail.com?subject=Let%27s%20work%20together">
+        <div>
+          <div class="plat">Email</div>
+          <div class="handle">mateo.cioppa1@gmail.com</div>
+        </div>
+        <span class="arr">↗</span>
+      </a>
+      <a class="lk" href="https://apps.apple.com/ar/app/orbitup/id6756928952" target="_blank" rel="noopener noreferrer">
+        <div>
+          <div class="plat">OrbitUp</div>
+          <div class="handle">App Store</div>
+        </div>
+        <span class="arr">↗</span>
+      </a>
+      <a class="lk" href="https://play.google.com/store/apps/details?id=com.orbitup.mobile" target="_blank" rel="noopener noreferrer">
+        <div>
+          <div class="plat">OrbitUp</div>
+          <div class="handle">Google Play</div>
+        </div>
+        <span class="arr">↗</span>
+      </a>
+      <a class="lk" href="./cv.html" target="_blank" rel="noopener noreferrer">
+        <div>
+          <div class="plat">Resume</div>
+          <div class="handle">Open CV</div>
+        </div>
+        <span class="arr">↗</span>
+      </a>
+    </div>
   </aside>
 
-  <footer class="site-footer">© <span id="year"></span> Mateo Cioppa</footer>
-  <p class="status-line">status: <b>drag to rotate · click labels</b></p>
+  <p class="status-line">neural atlas <b>//</b> drag to rotate · click nodes</p>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="./assets/js/new-portfolio.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+  <script src="./assets/js/main.js"></script>
 </body>
 </html>
