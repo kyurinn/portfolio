@@ -1,403 +1,123 @@
-<!DOCTYPE html>
-<html lang="es">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mateo Cioppa | Desarrollador de Producto & Estudiante de Ingeniería</title>
-    <meta name="description" content="Portfolio de Mateo Cioppa, desarrollador de producto con IA, co-fundador de OrbitUp y estudiante de Ingeniería en Computación.">
-
-    <!-- Open Graph / Social Sharing -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Mateo Cioppa | Desarrollador de Producto & Estudiante de Ingeniería">
-    <meta property="og:description" content="Portfolio de Mateo Cioppa, co-fundador de OrbitUp. Construyo productos digitales de punta a punta con IA.">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://mateocioppa.vercel.app/">
-    <meta property="og:url" content="https://mateocioppa.vercel.app/">
-    <meta property="og:image" content="https://mateocioppa.vercel.app/assets/img/og.jpg">
-    <meta name="twitter:image" content="https://mateocioppa.vercel.app/assets/img/og.jpg">
-    <meta name="theme-color" content="#f7f7f7" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
-    
-    <!-- Google Fonts: Inter & Syne -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- FontAwesome (Minimalist Icons) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha384-iw3OoTErCYJJB9mCa8LNS2hbsQ7M3C0EpIsO/H5+EGAkPGc6rk+V8i04oW/K5xq0" crossorigin="anonymous" referrerpolicy="no-referrer">
-    
-    <!-- Spline 3D Viewer Component (desktop only) -->
-    <script>
-        // If mobile: remove Spline from DOM before it ever tries to init
-        if (window.innerWidth <= 900) {
-            document.addEventListener('DOMContentLoaded', function() {
-                var bg = document.querySelector('.hero-3d-bg');
-                if (bg) bg.remove();
-            });
-        } else {
-            var s = document.createElement('script');
-            s.type = 'module';
-            s.src = 'https://unpkg.com/@splinetool/viewer@1.9.36/build/spline-viewer.js';
-            document.head.appendChild(s);
-        }
-    </script>
-
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="./assets/css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mateo Cioppa — Portfolio</title>
+  <meta name="description" content="Builder, founder, and computer engineering student focused on AI-first products." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Hanken+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/css/new-portfolio.css" />
 </head>
 <body>
-    <!-- Skip Link for Accessibility -->
-    <a href="#main" class="skip-link">Saltar al contenido</a>
+  <div id="world" aria-hidden="true"></div>
+  <div class="paper" aria-hidden="true"></div>
+  <div class="scan" aria-hidden="true"></div>
 
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-
-    <!-- Background Noise Texture -->
-    <div class="noise-bg"></div>
-
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-content">
-            <a href="#" class="logo line-hover hover-target">MC.</a>
-            <div class="nav-links">
-                <a href="#about" class="line-hover hover-target">Sobre mí</a>
-                <a href="#experience" class="line-hover hover-target">Experiencia</a>
-                <a href="#projects" class="line-hover hover-target">OrbitUp</a>
-                <a href="#stack" class="line-hover hover-target">Stack</a>
-                <a href="/cv" target="_blank" rel="noopener noreferrer" class="line-hover hover-target">CV</a>
-                <a href="#contact" class="btn-outline magnetic-btn hover-target">Contacto</a>
-                <!-- Theme Toggle Button -->
-                <button id="theme-toggle" class="theme-toggle magnetic-icon hover-target" aria-label="Cambiar tema">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-            <!-- Mobile Menu Toggle -->
-            <div class="mobile-menu-btn hover-target">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
+  <header class="site-header">
+    <a class="brand" href="#"><span class="dot"></span> ONLINE</a>
+    <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">Menu</button>
+    <nav class="site-nav" id="site-nav">
+      <button data-open="about">About</button>
+      <button data-open="work">Work</button>
+      <button data-open="stack">Stack</button>
+      <button data-open="contact">Contact</button>
     </nav>
+  </header>
 
-    <main id="main">
-        <!-- Hero Section -->
-        <section id="hero" class="hero">
-            <div class="hero-3d-bg fade-up">
-                <!-- Interactive 3D Model via Spline -->
-                <spline-viewer loading-anim-type="spinner" url="https://prod.spline.design/6Wq1Q7YGyM-iab9i/scene.splinecode"></spline-viewer>
-            </div>
-            <div class="container hero-content">
-                <p class="greeting header-text">Hola, soy</p>
-                <div class="title-overflow"><h1 class="name header-text">Mateo Cioppa.</h1></div>
-                <div class="title-overflow"><h2 class="title header-text">Construyo productos digitales de punta a punta.</h2></div>
-                <p class="subtitle header-text">Estudiante de Ingeniería en Computación & <strong>co-fundador de OrbitUp</strong>.</p>
-                <div class="hero-cta header-text">
-                    <a href="#projects" class="btn-primary magnetic-btn hover-target">Ver mi trabajo <i class="fas fa-arrow-down"></i></a>
-                </div>
-            </div>
-        </section>
+  <main class="hud" id="hud">
+    <div class="hud-index"><span class="label">Portfolio</span><span class="bar"></span></div>
+    <h1 class="name">Mateo <em>Cioppa</em></h1>
+    <p class="kicker">AI Systems • Product Engineering • Fast Shipping</p>
+    <p class="lead">
+      I build AI products that turn messy workflows into clear outcomes.
+      Co-founder of OrbitUp. Engineering student. Product-first execution.
+    </p>
+    <p class="type-line"><span class="type-pre">NOW:</span> <span id="type-line-text"></span></p>
+    <div class="hero-actions">
+      <button class="btn btn-primary" data-open="work">See selected work</button>
+      <a class="btn btn-ghost" href="./cv.html" target="_blank" rel="noopener noreferrer">Open CV</a>
+    </div>
+  </main>
 
-        <!-- About Section -->
-        <section id="about" class="about section">
-            <div class="container">
-                <div class="section-header fade-up">
-                    <h2 class="section-title">01. Sobre mí</h2>
-                    <div class="line"></div>
-                </div>
-                <div class="about-content">
-                    <p class="fade-up">Estudio <strong>Ingeniería en Computación</strong> y construyo productos digitales de punta a punta. Mi camino no fue el clásico: en lugar de empezar por la teoría, empecé por un producto real con usuarios reales.</p>
-                    <p class="fade-up">Como <strong>CTO y co-fundador de OrbitUp</strong> llevé una app EdTech de cero a producción: publicada en App Store y Google Play, con más de 800 usuarios, backend propio y deploys semanales. Ahí aprendí lo que no se enseña en ningún curso: decidir qué construir, equilibrar deuda técnica con velocidad de iteración, y operar entornos de producción de verdad.</p>
-                    <p class="fade-up">Trabajo con <strong>herramientas de IA</strong> como parte central de mi flujo: mi fortaleza es pensar y diseñar soluciones, y llevarlas a producción con criterio sobre arquitectura, entornos y buenas prácticas. <strong>Aprendo rápido</strong>: cada tecnología del stack de OrbitUp la incorporé sobre la marcha.</p>
-                    
-                    <!-- OrbitUp production stats -->
-                    <div class="github-stats-card fade-up mt-4 hover-target">
-                        <div class="github-header">
-                            <i class="fas fa-satellite"></i>
-                            <span>OrbitUp en producción</span>
-                        </div>
-                        <div class="github-body">
-                            <div class="github-stat">
-                                <span class="github-stat-label">Usuarios</span>
-                                <span class="github-stat-value">+800</span>
-                            </div>
-                            <div class="github-stat">
-                                <span class="github-stat-label">Tests automatizados</span>
-                                <span class="github-stat-value">+3.000</span>
-                            </div>
-                            <div class="github-stat">
-                                <span class="github-stat-label">Stores</span>
-                                <span class="github-stat-value">iOS & Android</span>
-                            </div>
-                        </div>
-                    </div>
+  <div class="hotspots" id="hotspots">
+    <button class="hotspot" data-open="about"><span></span>About</button>
+    <button class="hotspot" data-open="work"><span></span>Work</button>
+    <button class="hotspot" data-open="stack"><span></span>Stack</button>
+    <button class="hotspot" data-open="contact"><span></span>Contact</button>
+  </div>
 
-                    <!-- Now / qué estoy haciendo hoy -->
-                    <div class="github-stats-card now-card fade-up mt-4 hover-target">
-                        <div class="github-header">
-                            <i class="fas fa-location-arrow"></i>
-                            <span>Ahora</span>
-                        </div>
-                        <ul class="now-list">
-                            <li>Cursando Ingeniería en Computación en la UNLP.</li>
-                            <li>Programa NAVES en el IAE Business School.</li>
-                            <li>Buscando mi próximo desafío part-time.</li>
-                        </ul>
-                        <span class="now-updated">Actualizado: julio 2026</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Infinite Marquee -->
-            <div class="marquee-container fade-up">
-                <div class="marquee-content">
-                    <div class="marquee-text">
-                        DESIGN <span>•</span> ENGINEER <span>•</span> SCALE <span>•</span> REACT NATIVE <span>•</span> NODE.JS <span>•</span> ARCHITECTURE <span>•</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <aside class="panel" id="panel-about" aria-hidden="true">
+    <button class="panel-close" data-close>Close</button>
+    <div class="panel-head">
+      <h2>About</h2>
+      <p class="panel-mark">01</p>
+    </div>
+    <p>
+      I am Mateo Cioppa, based in Argentina. I combine product intuition with engineering discipline:
+      from concept, to architecture, to deployment. I focus on modern digital experiences with AI at the core.
+    </p>
+    <div class="about-stats">
+      <article><strong>800+</strong><span>OrbitUp users</span></article>
+      <article><strong>3,000+</strong><span>Practice tests delivered</span></article>
+      <article><strong>Weekly</strong><span>Product releases</span></article>
+    </div>
+  </aside>
 
-        <!-- Experience Timeline Section -->
-        <section id="experience" class="timeline section">
-            <div class="container">
-                <div class="section-header fade-up">
-                    <h2 class="section-title">02. El Viaje</h2>
-                    <div class="line"></div>
-                </div>
-                
-                <div class="timeline-container relative">
-                    <!-- The vertical animated line -->
-                    <div class="timeline-line"></div>
-                    
-                    <!-- Timeline Nodes -->
-                    <div class="timeline-item fade-up">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2026 - En curso</span>
-                            <h3 class="timeline-role">Programa NAVES</h3>
-                            <h4 class="timeline-company">IAE Business School, Universidad Austral</h4>
-                            <p>Formación, mentoría y networking para emprendedores. Antes pasé por Usina de Ideas (2025), la preincubadora de proyectos de la UNLP: cliente y go-to-market, modelo de negocio, pretotipado y pitch.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item fade-up">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2025 - 2026</span>
-                            <h3 class="timeline-role">CTO & Co-fundador</h3>
-                            <h4 class="timeline-company">OrbitUp</h4>
-                            <p>Lideré la arquitectura técnica completa del producto: aplicación móvil (React Native/Expo) publicada en las stores, backend Node.js con MongoDB, y entornos dev/staging/prod con deploys en Railway y Vercel. Desde la seguridad JWT hasta una suite de más de 3.000 tests automatizados.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item fade-up">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2025 - Presente</span>
-                            <h3 class="timeline-role">Estudiante de Ingeniería en Computación</h3>
-                            <h4 class="timeline-company">Universidad Nacional de La Plata</h4>
-                            <p>Construyo las bases formales de la carrera mientras las cruzo con lo que ya viví en producción. La facultad me da el porqué de las cosas que OrbitUp me obligó a resolver en la práctica.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item fade-up">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2019 - 2024</span>
-                            <h3 class="timeline-role">Emprendedor & Diseñador Gráfico</h3>
-                            <h4 class="timeline-company">Independiente</h4>
-                            <p>Dirigí proyectos de branding e identidad visual para múltiples clientes. Esa base en teoría del color, tipografía y experiencia de usuario es la que hoy me permite construir interfaces que no solo funcionan: comunican.</p>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects / OrbitUp Section -->
-        <section id="projects" class="projects section">
-            <div class="container">
-                <div class="section-header fade-up">
-                    <h2 class="section-title">03. Proyecto Destacado</h2>
-                    <div class="line"></div>
-                </div>
-                
-                <div class="project-card parallax-card fade-up">
-                    <div class="project-content">
-                        <p class="project-overline">CTO & Lead Developer</p>
-                        <h3 class="project-title">OrbitUp</h3>
-                        <div class="project-description">
-                            <p>Plataforma de estudio en producción con más de 800 usuarios registrados. Como CTO, lideré el desarrollo integral:</p>
-                            <ul>
-                                <li><strong>Aplicación Móvil:</strong> React Native + TypeScript, compilada con Expo EAS Build y publicada en App Store y Google Play.</li>
-                                <li><strong>Backend & API:</strong> Arquitectura REST con Node.js y Express sobre MongoDB Atlas.</li>
-                                <li><strong>Infraestructura & CI/CD:</strong> Entornos dev/staging/prod con despliegues automáticos en Railway y Vercel desde GitHub.</li>
-                                <li><strong>IA en el producto:</strong> Generación de contenido de estudio y chatbot académico con Gemini; desarrollo asistido con Claude Code.</li>
-                                <li><strong>Seguridad & Analytics:</strong> Autenticación JWT y sistema propio de analytics basado en eventos.</li>
-                            </ul>
-                        </div>
-                        <ul class="project-tech-list">
-                            <li class="hover-target">React Native</li>
-                            <li class="hover-target">TypeScript</li>
-                            <li class="hover-target">Node.js</li>
-                            <li class="hover-target">MongoDB</li>
-                            <li class="hover-target">Gemini API</li>
-                        </ul>
-                        <div class="project-links">
-                            <a href="https://apps.apple.com/ar/app/orbitup/id6756928952" target="_blank" rel="noopener noreferrer" class="store-link line-hover hover-target">
-                                <i class="fab fa-apple"></i> App Store
-                            </a>
-                            <a href="https://play.google.com/store/apps/details?id=com.orbitup.mobile" target="_blank" rel="noopener noreferrer" class="store-link line-hover hover-target">
-                                <i class="fab fa-google-play"></i> Play Store
-                            </a>
-                        </div>
-                        <div class="project-shots">
-                            <img src="./assets/img/orbitup-mapa.webp" alt="OrbitUp: mapa de la carrera materia por materia" width="400" height="866" loading="lazy" decoding="async">
-                            <img src="./assets/img/orbitup-practica.webp" alt="OrbitUp: práctica con preguntas generadas con IA" width="400" height="866" loading="lazy" decoding="async">
-                            <img src="./assets/img/orbitup-calendario.webp" alt="OrbitUp: calendario de clases y sesiones de estudio" width="400" height="866" loading="lazy" decoding="async">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Tech Stack Section -->
-        <section id="stack" class="stack section">
-            <div class="container">
-                <div class="section-header fade-up">
-                    <h2 class="section-title">04. Stack Tecnológico</h2>
-                    <div class="line"></div>
-                </div>
-                
-                <div class="stack-grid">
-                    <!-- Mobile -->
-                    <div class="stack-category stagger-card">
-                        <h3><i class="fas fa-mobile-alt"></i> Mobile App</h3>
-                        <ul class="clean-list">
-                            <li>React Native</li>
-                            <li>TypeScript</li>
-                            <li>Expo (EAS Build)</li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Backend -->
-                    <div class="stack-category stagger-card">
-                        <h3><i class="fas fa-server"></i> Backend & DB</h3>
-                        <ul class="clean-list">
-                            <li>Node.js & Express</li>
-                            <li>API REST</li>
-                            <li>MongoDB Atlas</li>
-                            <li>Jest (+3.000 tests)</li>
-                        </ul>
-                    </div>
-
-                    <!-- IA -->
-                    <div class="stack-category stagger-card">
-                        <h3><i class="fas fa-robot"></i> IA</h3>
-                        <ul class="clean-list">
-                            <li>Claude Code</li>
-                            <li>Gemini API</li>
-                            <li>Integración de LLMs en producto</li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Infra -->
-                    <div class="stack-category stagger-card">
-                        <h3><i class="fas fa-cloud"></i> Infraestructura</h3>
-                        <ul class="clean-list">
-                            <li>Railway Hosting</li>
-                            <li>GitHub (CI/CD)</li>
-                            <li>Auto-deploy pipelines</li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Integrations -->
-                    <div class="stack-category stagger-card">
-                        <h3><i class="fas fa-plug"></i> Integraciones</h3>
-                        <ul class="clean-list">
-                            <li>Google Classroom & Moodle</li>
-                            <li>Resend (Emails)</li>
-                            <li>JWT (Auth Security)</li>
-                            <li>Analytics propio (eventos)</li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Productivity -->
-                    <div class="stack-category stagger-card">
-                        <h3><i class="fas fa-project-diagram"></i> Productividad</h3>
-                        <ul class="clean-list">
-                            <li>Obsidian (Second Brain / Docs)</li>
-                            <li>Notion (Gestión de Proyectos)</li>
-                            <li>Figma (Prototipado UI)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact section">
-            <div class="container text-center">
-                <div class="fade-up">
-                    <p class="contact-overline">05. ¿Hablamos?</p>
-                </div>
-                <div class="title-overflow fade-up">
-                    <h2 class="section-title center">Ponte en contacto</h2>
-                </div>
-                <div class="fade-up">
-                    <p class="contact-text">Actualmente busco mi próximo desafío: un rol part-time donde pueda construir producto. Si tenés una propuesta o querés hablar de producto y tecnología, escribime.</p>
-                    <a href="/cv" target="_blank" rel="noopener noreferrer" class="btn-outline magnetic-btn hover-target" style="display:inline-block; margin-top:1rem;">Ver mi CV</a>
-                </div>
-                
-                <!-- Terminal Contact Form -->
-                <div class="terminal-container fade-up mt-4 text-left">
-                    <div class="terminal-header">
-                        <div class="terminal-buttons">
-                        <span class="dot red" role="presentation"></span>
-                            <span class="dot yellow" role="presentation"></span>
-                            <span class="dot green" role="presentation"></span>
-                        </div>
-                        <span class="terminal-title">guest@mateocioppa: ~</span>
-                        <div class="spacer"></div>
-                    </div>
-                    <div class="terminal-body" id="terminal-body">
-                        <p class="terminal-prompt"><span class="user">guest@mateocioppa</span>:<span class="dir">~</span>$ ./bienvenida.sh</p>
-                        <p class="terminal-output">Terminal interactiva lista. Tipeá <strong>help</strong> y apretá Enter.</p>
-                        <div id="terminal-log" aria-live="polite"></div>
-                        <div class="input-line">
-                            <span class="prompt-arrow">></span>
-                            <input type="text" id="terminal-cmd" class="terminal-input hover-target" placeholder="help" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Terminal interactiva: escribí un comando y apretá Enter">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="social-links">
-                    <a href="https://github.com/kyurinn" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="magnetic-icon hover-target" title="GitHub Profile"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/mateo-cioppa/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="magnetic-icon hover-target" title="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <p class="copyright">Diseñado y construido por Mateo Cioppa &copy; 2026</p>
-                <p class="colophon">HTML plano · 0 frameworks · CSP estricta · WebP · reduced-motion — <a href="https://github.com/kyurinn/portfolio" target="_blank" rel="noopener noreferrer">ver el código</a></p>
-            </div>
+  <aside class="panel" id="panel-work" aria-hidden="true">
+    <button class="panel-close" data-close>Close</button>
+    <div class="panel-head">
+      <h2>Selected Work</h2>
+      <p class="panel-mark">02</p>
+    </div>
+    <article class="project-card">
+      <div class="project-media">
+        <img src="./assets/img/orbitup-practica.webp" alt="OrbitUp mobile app practice screen" loading="lazy" />
+      </div>
+      <div class="project-body">
+        <p class="project-tag">Flagship Product</p>
+        <h3>OrbitUp</h3>
+        <p>
+          EdTech platform built end-to-end: mobile app, backend, content operations, analytics, and growth.
+          Deployed continuously with a quality-first workflow.
+        </p>
+        <div class="project-links">
+          <a href="https://apps.apple.com/ar/app/orbitup/id6756928952" target="_blank" rel="noopener noreferrer">App Store</a>
+          <a href="https://play.google.com/store/apps/details?id=com.orbitup.mobile" target="_blank" rel="noopener noreferrer">Google Play</a>
         </div>
-    </footer>
+      </div>
+    </article>
+  </aside>
 
-    <!-- GSAP Core & ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha384-d+vyQ0dYcymoP8ndq2hW7FGC50nqGdXUEgoOUGxbbkAJwZqL7h+jKN0GGgn9hFDS" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" integrity="sha384-poC0r6usQOX2Ayt/VGA+t81H6V3iN9L+Irz9iO8o+s0X20tLpzc9DOOtnKxhaQSE" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-    <!-- Custom JS -->
-    <script src="./assets/js/script.js"></script>
+  <aside class="panel" id="panel-stack" aria-hidden="true">
+    <button class="panel-close" data-close>Close</button>
+    <div class="panel-head">
+      <h2>Tech Stack</h2>
+      <p class="panel-mark">03</p>
+    </div>
+    <div class="stack-grid">
+      <span>Claude Code</span><span>Gemini API</span><span>Node.js</span><span>React Native (Expo)</span>
+      <span>React</span><span>MongoDB</span><span>Railway</span><span>Vercel</span>
+      <span>JavaScript / TypeScript</span><span>Automation</span><span>Product Thinking</span>
+    </div>
+  </aside>
+
+  <aside class="panel" id="panel-contact" aria-hidden="true">
+    <button class="panel-close" data-close>Close</button>
+    <div class="panel-head">
+      <h2>Contact</h2>
+      <p class="panel-mark">04</p>
+    </div>
+    <p class="contact-head">Let’s build something great.</p>
+    <p>If you’re hiring or building a serious product, I’m in.</p>
+    <a class="btn btn-primary" href="mailto:mateo.cioppa1@gmail.com?subject=Let%27s%20work%20together">Send email</a>
+  </aside>
+
+  <footer class="site-footer">© <span id="year"></span> Mateo Cioppa</footer>
+  <p class="status-line">status: <b>drag to rotate · click labels</b></p>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="./assets/js/new-portfolio.js"></script>
 </body>
 </html>
