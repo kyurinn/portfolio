@@ -33,6 +33,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     activePanel = null;
     setNavActive(null);
+    document.body.classList.remove('focused');
+
+    // Reset project views
+    const projectsList = document.getElementById('projects-list');
+    const projectDetails = document.getElementById('project-details');
+    if (projectsList) projectsList.style.display = 'grid';
+    if (projectDetails) projectDetails.style.display = 'none';
   };
 
   const openPanel = (panel) => {
@@ -63,6 +70,33 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closePanel();
   });
+
+  // Project Master-Detail Interaction
+  const projectBtns = document.querySelectorAll('.project-card-btn');
+  const projectsList = document.getElementById('projects-list');
+  const projectDetails = document.getElementById('project-details');
+  const backBtn = document.getElementById('back-to-projects');
+  const detailViews = document.querySelectorAll('.project-detail-view');
+
+  projectBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-project');
+      if (projectsList) projectsList.style.display = 'none';
+      if (projectDetails) projectDetails.style.display = 'block';
+      detailViews.forEach(v => {
+        v.style.display = v.id === `detail-${target}` ? 'block' : 'none';
+      });
+      document.getElementById('panel-work').scrollTop = 0;
+    });
+  });
+
+  if (backBtn) {
+    backBtn.addEventListener('click', () => {
+      if (projectDetails) projectDetails.style.display = 'none';
+      if (projectsList) projectsList.style.display = 'grid';
+      document.getElementById('panel-work').scrollTop = 0;
+    });
+  }
 
   const typeTarget = document.getElementById("type-line-text");
   const phrases = [

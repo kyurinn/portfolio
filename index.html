@@ -67,49 +67,74 @@
       <p class="panel-mark">Execution</p>
     </div>
     
-    <div class="work-item">
-      <div class="txt">
-        <div class="w-idx">FLAGSHIP STARTUP</div>
+    <!-- MASTER VIEW: Selectable Cards -->
+    <div id="projects-list" class="projects-grid">
+      <div class="project-card-btn" data-project="orbitup">
         <h3>OrbitUp <em>Ecosystem</em></h3>
-        <p>The EdTech platform I co-founded. Built end-to-end to accompany students with an AI that truly teaches. This encompasses the landing page, the web/mobile app, and the internal tooling.</p>
+        <p>The EdTech platform I co-founded. Built end-to-end to accompany students with an AI that truly teaches.</p>
         <div class="tagrow">
           <span class="tag">Mobile App</span><span class="tag">Web App</span><span class="tag">Backend</span><span class="tag">AI Generation</span>
         </div>
       </div>
-      
-      <!-- Landing Page -->
-      <div class="plate" style="padding: 0; background: #000; margin-top: 10px;">
-        <div class="p-head">
-          <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
-          <div class="p-title">orbitup.app</div>
-        </div>
-        <img src="./assets/img/orbitup-landing.png" alt="OrbitUp Landing Page" style="width: 100%; display: block; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; opacity: 0.9;" onerror="this.style.display='none'" />
-      </div>
 
-      <!-- Linear Clone / Dev Board -->
-      <div class="plate" style="padding: 0; background: #000; margin-top: 10px;">
-        <div class="p-head">
-          <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
-          <div class="p-title">OrbitUp Dev Board (Linear Clone)</div>
+      <div class="project-card-btn" data-project="agentic">
+        <h3>Agentic <em>Systems</em></h3>
+        <p>Designing workflows where AI agents handle repetitive operations, leveraging frontier LLMs.</p>
+        <div class="tagrow">
+          <span class="tag">Claude Code</span><span class="tag">Gemini API</span><span class="tag">Automation</span>
         </div>
-        <img src="./assets/img/linear-board.png" alt="OrbitUp Dev Board" style="width: 100%; display: block; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; opacity: 0.9;" onerror="this.style.display='none'" />
       </div>
+    </div>
 
-      <!-- Web App (Practica) -->
-      <div class="plate" style="padding: 0; background: #000; margin-top: 10px;">
-        <div class="p-head">
-          <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
-          <div class="p-title">app.orbitup.app</div>
-        </div>
-        <img src="./assets/img/orbitup-app.png" alt="OrbitUp Web App" style="width: 100%; display: block; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; opacity: 0.9;" onerror="this.style.display='none'" />
-      </div>
+    <!-- DETAIL VIEW: Hidden by default -->
+    <div id="project-details" style="display: none;">
+      <button id="back-to-projects" class="lk" style="padding: 0 0 20px 0; border: none; width: auto; margin-bottom: 20px;">
+        <span class="arr" style="transform: rotate(180deg); display: inline-block;">↗</span>
+        <span class="handle" style="font-size: 1.1rem; margin-left: 12px;">Back to projects</span>
+      </button>
 
-      <div class="plate" style="margin-top: 10px;">
-        <div class="p-head">
-          <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
-          <div class="p-title">orbitup_metrics.js</div>
-        </div>
-        <pre class="p-body"><span class="k">import</span> { AppMetrics, Analytics } <span class="k">from</span> <span class="s">'@orbitup/core'</span>;
+      <!-- DETAIL: OrbitUp -->
+      <div id="detail-orbitup" class="project-detail-view" style="display: none;">
+        <div class="work-item" style="border: none; padding-top: 0;">
+          <div class="txt">
+            <div class="w-idx">FLAGSHIP STARTUP</div>
+            <h3>OrbitUp <em>Ecosystem</em></h3>
+            <p>The EdTech platform I co-founded. Built end-to-end to accompany students with an AI that truly teaches. This encompasses the landing page, the web/mobile app, and the internal tooling.</p>
+          </div>
+          
+          <!-- Landing Page -->
+          <div class="plate" style="padding: 0; background: #000; margin-top: 10px;">
+            <div class="p-head">
+              <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
+              <div class="p-title">orbitup.app</div>
+            </div>
+            <img src="./assets/img/orbitup-landing.png" alt="OrbitUp Landing Page" style="width: 100%; display: block; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; opacity: 0.9;" onerror="this.style.display='none'" />
+          </div>
+
+          <!-- Linear Clone / Dev Board -->
+          <div class="plate" style="padding: 0; background: #000; margin-top: 10px;">
+            <div class="p-head">
+              <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
+              <div class="p-title">OrbitUp Dev Board (Linear Clone)</div>
+            </div>
+            <img src="./assets/img/linear-board.png" alt="OrbitUp Dev Board" style="width: 100%; display: block; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; opacity: 0.9;" onerror="this.style.display='none'" />
+          </div>
+
+          <!-- Web App (Practica) -->
+          <div class="plate" style="padding: 0; background: #000; margin-top: 10px;">
+            <div class="p-head">
+              <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
+              <div class="p-title">app.orbitup.app</div>
+            </div>
+            <img src="./assets/img/orbitup-app.png" alt="OrbitUp Web App" style="width: 100%; display: block; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; opacity: 0.9;" onerror="this.style.display='none'" />
+          </div>
+
+          <div class="plate" style="margin-top: 10px;">
+            <div class="p-head">
+              <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
+              <div class="p-title">orbitup_metrics.js</div>
+            </div>
+            <pre class="p-body"><span class="k">import</span> { AppMetrics, Analytics } <span class="k">from</span> <span class="s">'@orbitup/core'</span>;
 
 <span class="k">const</span> stats = <span class="k">await</span> AppMetrics.<span class="f">getWeekly</span>();
 
@@ -122,24 +147,24 @@
 <span class="k">if</span> (stats.growth > <span class="n">0.1</span>) {
   Analytics.<span class="f">triggerEvent</span>(<span class="s">"Scaling infrastructure..."</span>);
 }</pre>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="work-item">
-      <div class="txt">
-        <div class="w-idx">PRODUCTION PIPELINES</div>
-        <h3>Agentic <em>Systems</em></h3>
-        <p>Designing workflows where AI agents handle repetitive operations, leveraging tools like Claude Code and Gemini API to maximize velocity.</p>
-        <div class="tagrow">
-          <span class="tag">Claude Code</span><span class="tag">Gemini API</span><span class="tag">Automation</span>
-        </div>
-      </div>
-      <div class="plate" style="margin-top: 10px;">
-        <div class="p-head">
-          <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
-          <div class="p-title">bash: deployment</div>
-        </div>
-        <pre class="p-body"><span class="k">$</span> vercel deploy --prod
+      <!-- DETAIL: Agentic Systems -->
+      <div id="detail-agentic" class="project-detail-view" style="display: none;">
+        <div class="work-item" style="border: none; padding-top: 0;">
+          <div class="txt">
+            <div class="w-idx">PRODUCTION PIPELINES</div>
+            <h3>Agentic <em>Systems</em></h3>
+            <p>Designing workflows where AI agents handle repetitive operations, leveraging tools like Claude Code and Gemini API to maximize velocity.</p>
+          </div>
+          <div class="plate" style="margin-top: 10px;">
+            <div class="p-head">
+              <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
+              <div class="p-title">bash: deployment</div>
+            </div>
+            <pre class="p-body"><span class="k">$</span> vercel deploy --prod
 
 <span class="o">Vercel CLI 32.0.1</span>
 <span class="o">Building project...</span>
@@ -149,6 +174,8 @@
 
 <span class="k">$</span> git commit -m <span class="s">"Shipped new AI features"</span>
 <span class="k">$</span> git push origin main</pre>
+          </div>
+        </div>
       </div>
     </div>
   </aside>
