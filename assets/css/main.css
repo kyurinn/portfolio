@@ -147,6 +147,31 @@ body.focused .hotspot { opacity: 0; pointer-events: none; }
 .project-card-btn p { color: var(--text); font-size: 0.9rem; margin: 0; line-height: 1.5; }
 .project-card-btn .tagrow { margin-top: 18px; }
 
+.card-preview {
+  margin-top: 20px;
+  height: 90px;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--line-soft);
+  position: relative;
+  background: var(--code-bg);
+}
+.card-preview::after {
+  content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 50px;
+  background: linear-gradient(to bottom, transparent, rgba(4, 8, 11, 1));
+  pointer-events: none;
+}
+.card-preview img {
+  width: 100%; display: block; object-fit: cover; object-position: top;
+  opacity: 0.6; transition: opacity 0.4s var(--ease);
+}
+.project-card-btn:hover .card-preview img { opacity: 0.95; }
+.card-preview pre {
+  margin: 0; padding: 12px; font-family: "JetBrains Mono", monospace; font-size: 11px;
+  color: var(--code-txt); line-height: 1.6; opacity: 0.6; transition: opacity 0.4s var(--ease);
+}
+.project-card-btn:hover .card-preview pre { opacity: 0.95; }
+
 /* Code Plates */
 .plate { border: 1px solid var(--line); background: var(--code-bg); display: flex; flex-direction: column; border-radius: 6px; overflow: hidden; box-shadow: 0 12px 34px rgba(0,0,0,.5), inset 0 0 0 1px rgba(38, 217, 255, .04); transition: .5s var(--ease); }
 .plate:hover { border-color: var(--accent); }
