@@ -52,22 +52,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(".nav-links a");
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute("id");
-          navLinks.forEach((link) => {
-            const href = link.getAttribute("href");
-            link.classList.toggle("active", href === `#${id}`);
-          });
-        }
-      });
-    },
-    { rootMargin: "-20% 0px -65% 0px", threshold: 0 }
-  );
+  const onScroll = () => {
+    const scrollMid = window.scrollY + window.innerHeight * 0.35;
+    let active = null;
+    sections.forEach((sec) => {
+      if (sec.offsetTop <= scrollMid) active = sec.getAttribute("id");
+    });
+    navLinks.forEach((link) => {
+      link.classList.toggle("active", link.getAttribute("href") === `#${active}`);
+    });
+  };
 
-  sections.forEach((sec) => observer.observe(sec));
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
 
   // 5. Natural Human Typewriter Line
   const typeTarget = document.getElementById("type-line-text");
@@ -125,71 +122,75 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 7. Particle Field Background (subtle, non-geometric, ambient)
+  // 7. Wireframe Icosahedron Background (emerald, ambient)
   const world = document.getElementById("world");
   if (!world || typeof window.THREE === "undefined") return;
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
-  camera.position.set(0, 0, 8);
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 5.2);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x000000, 0);
   world.appendChild(renderer.domElement);
 
-  // Sparse particle field — no recognizable shape
-  const PARTICLE_COUNT = 180;
-  const positions = new Float32Array(PARTICLE_COUNT * 3);
-  const speeds = new Float32Array(PARTICLE_COUNT);
+  const ambientGroup = new THREE.Group();
+  scene.add(ambientGroup);
 
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
-    positions[i * 3]     = (Math.random() - 0.5) * 24;  // x
-    positions[i * 3 + 1] = (Math.random() - 0.5) * 14;  // y
-    positions[i * 3 + 2] = (Math.random() - 0.5) * 8;   // z
-    speeds[i] = 0.0004 + Math.random() * 0.0006;
-  }
-
-  const particleGeo = new THREE.BufferGeometry();
-  particleGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-
-  const particleMat = new THREE.PointsMaterial({
+  const icoGeo = new THREE.IcosahedronGeometry(1.5, 1);
+  const wireMat = new THREE.LineBasicMaterial({
     color: 0x10b981,
-    size: 0.045,
     transparent: true,
-    opacity: 0.35,
-    sizeAttenuation: true,
+    opacity: 0.14
   });
+  const wireMesh = new THREE.LineSegments(new THREE.WireframeGeometry(icoGeo), wireMat);
+  ambientGroup.add(wireMesh);
 
-  const particles = new THREE.Points(particleGeo, particleMat);
-  scene.add(particles);
+  const nodeMat = new THREE.PointsMaterial({
+    color: 0x10b981,
+    size: 0.03,
+    transparent: true,
+    opacity: 0.45
+  });
+  const nodes = new THREE.Points(icoGeo, nodeMat);
+  ambientGroup.add(nodes);
 
-  // Very slow drift — no mouse tracking, no spinning shape
-  let elapsed = 0;
+  const ringGeo = new THREE.RingGeometry(2.2, 2.21, 64);
+  const ringMat = new THREE.MeshBasicMaterial({
+    color: 0x10b981,
+    side: THREE.DoubleSide,
+    transparent: true,
+    opacity: 0.07
+  });
+  const ring = new THREE.Mesh(ringGeo, ringMat);
+  ring.rotation.x = Math.PI / 3;
+  ambientGroup.add(ring);
+
+  let scrollY = window.pageYOffset;
+  window.addEventListener("scroll", () => { scrollY = window.pageYOffset; }, { passive: true });
 
   const handleResize = () => {
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-    camera.aspect = w / h;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize(w, h);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(width, height);
+    ambientGroup.scale.setScalar(width < 768 ? 0.7 : 1.0);
+    ambientGroup.position.set(width < 768 ? 0 : 1.2, 0.2, 0);
   };
+
   window.addEventListener("resize", handleResize);
+  handleResize();
 
   const animate = () => {
     requestAnimationFrame(animate);
     if (!reducedMotion) {
-      elapsed += 0.001;
-      // Each particle drifts upward slowly and wraps around
-      const pos = particleGeo.attributes.position.array;
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        pos[i * 3 + 1] += speeds[i];
-        if (pos[i * 3 + 1] > 7) pos[i * 3 + 1] = -7;
-      }
-      particleGeo.attributes.position.needsUpdate = true;
-      // Very subtle global sway
-      particles.rotation.y = Math.sin(elapsed * 0.4) * 0.04;
+      ambientGroup.rotation.y += 0.0012;
+      ambientGroup.rotation.x += 0.0004;
+      ring.rotation.z += 0.001;
     }
     renderer.render(scene, camera);
   };
