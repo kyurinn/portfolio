@@ -170,19 +170,19 @@ button {
 .container {
   position: relative;
   z-index: 10;
-  max-width: 860px;
+  max-width: 1060px;
   margin: 0 auto;
   padding: 0 32px;
 }
 
 /* --- Hero Section --- */
 .hero {
-  min-height: 88vh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 120px;
-  padding-bottom: 60px;
+  padding-top: 124px;
+  padding-bottom: 48px;
 }
 
 .hero-meta {
@@ -277,11 +277,11 @@ button {
 
 /* --- Section Structure --- */
 .section {
-  padding: 100px 0 40px;
+  padding: 56px 0 24px;
 }
 
 .section-header {
-  margin-bottom: 48px;
+  margin-bottom: 28px;
 }
 
 .section-label {
@@ -316,9 +316,9 @@ button {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 40px;
+  padding: 28px 32px;
   backdrop-filter: blur(16px);
-  margin-bottom: 48px;
+  margin-bottom: 28px;
   transition: border-color 0.3s var(--ease);
 }
 
@@ -364,11 +364,11 @@ button {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  padding: 24px;
+  padding: 16px 20px;
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 8px;
-  margin-bottom: 36px;
+  margin-bottom: 24px;
 }
 
 .stat-item .stat-num {
@@ -388,8 +388,8 @@ button {
 .pillars {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-bottom: 36px;
+  gap: 14px;
+  margin-bottom: 24px;
 }
 
 .pillar {
@@ -451,8 +451,8 @@ button {
 
 .showcase-img-wrap {
   position: relative;
-  min-height: 360px;
-  max-height: 500px;
+  min-height: 240px;
+  max-height: 360px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -462,7 +462,7 @@ button {
 .showcase-img {
   width: 100%;
   height: auto;
-  max-height: 500px;
+  max-height: 360px;
   object-fit: contain;
   display: none;
 }
@@ -480,15 +480,15 @@ button {
 /* Secondary Projects */
 .project-row {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
 }
 
 .project-item {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 32px;
+  padding: 24px;
   backdrop-filter: blur(16px);
   transition: border-color 0.2s var(--ease);
 }
@@ -540,14 +540,14 @@ button {
 
 /* --- Story & Philosophy Section --- */
 .story-block {
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
 .story-card {
   border-left: 2px solid var(--border);
-  padding-left: 28px;
+  padding-left: 20px;
   transition: border-color 0.2s var(--ease);
 }
 
@@ -681,8 +681,8 @@ button {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 44px;
-  margin-bottom: 60px;
+  padding: 32px;
+  margin-bottom: 36px;
 }
 
 .contact-headline {
@@ -696,7 +696,7 @@ button {
   font-size: 1.05rem;
   color: var(--text-secondary);
   line-height: 1.6;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   max-width: 600px;
 }
 
@@ -743,7 +743,7 @@ button {
 /* --- Footer --- */
 .footer {
   border-top: 1px solid var(--border);
-  padding: 40px 0 60px;
+  padding: 28px 0 36px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -797,6 +797,15 @@ button {
 
   .stack-grid {
     grid-template-columns: 1fr;
+  }
+
+  .project-row {
+    grid-template-columns: 1fr;
+  }
+
+  .story-block {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .case-study {
