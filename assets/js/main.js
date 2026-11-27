@@ -17,14 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
     menuBtn.addEventListener("click", () => {
       const isOpen = nav.classList.toggle("open");
       menuBtn.setAttribute("aria-expanded", String(isOpen));
-      menuBtn.textContent = isOpen ? "✕" : "☰";
+      menuBtn.textContent = isOpen ? "Close" : "Menu";
     });
 
     nav.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         nav.classList.remove("open");
         menuBtn.setAttribute("aria-expanded", "false");
-        menuBtn.textContent = "☰";
+        menuBtn.textContent = "Menu";
       });
     });
   }

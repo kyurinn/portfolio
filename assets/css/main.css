@@ -156,7 +156,14 @@ button {
 .menu-toggle {
   display: none;
   color: var(--text-primary);
-  font-size: 1.2rem;
+  font-size: 0.76rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.03);
 }
 
 /* --- Container & Content --- */
