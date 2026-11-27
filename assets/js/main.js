@@ -1,5 +1,5 @@
 /**
- * Mateo Cioppa — Portfolio Client Script
+ * Mateo Cioppa :: Portfolio Client Script
  * Subtle Ambient Canvas & Interaction Controller
  */
 
@@ -125,107 +125,73 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 7. Subtle, Tasteful Three.js Background Canvas
+  // 7. Particle Field Background (subtle, non-geometric, ambient)
   const world = document.getElementById("world");
   if (!world || typeof window.THREE === "undefined") return;
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
-  camera.position.set(0, 0, 5.2);
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 8);
 
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x000000, 0);
   world.appendChild(renderer.domElement);
 
-  const ambientGroup = new THREE.Group();
-  scene.add(ambientGroup);
+  // Sparse particle field — no recognizable shape
+  const PARTICLE_COUNT = 180;
+  const positions = new Float32Array(PARTICLE_COUNT * 3);
+  const speeds = new Float32Array(PARTICLE_COUNT);
 
-  // Minimal, elegant geometric core (low opacity, refined lines)
-  const icoGeo = new THREE.IcosahedronGeometry(1.5, 1);
-  const wireMat = new THREE.LineBasicMaterial({
-    color: 0x38bdf8,
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    positions[i * 3]     = (Math.random() - 0.5) * 24;  // x
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 14;  // y
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 8;   // z
+    speeds[i] = 0.0004 + Math.random() * 0.0006;
+  }
+
+  const particleGeo = new THREE.BufferGeometry();
+  particleGeo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+
+  const particleMat = new THREE.PointsMaterial({
+    color: 0x10b981,
+    size: 0.045,
     transparent: true,
-    opacity: 0.12
-  });
-  const wireMesh = new THREE.LineSegments(new THREE.WireframeGeometry(icoGeo), wireMat);
-  ambientGroup.add(wireMesh);
-
-  // Subtle vertices
-  const nodeMat = new THREE.PointsMaterial({
-    color: 0x38bdf8,
-    size: 0.03,
-    transparent: true,
-    opacity: 0.4
-  });
-  const nodes = new THREE.Points(icoGeo, nodeMat);
-  ambientGroup.add(nodes);
-
-  // Thin, delicate orbital ring
-  const ringGeo = new THREE.RingGeometry(2.2, 2.21, 64);
-  const ringMat = new THREE.MeshBasicMaterial({
-    color: 0x38bdf8,
-    side: THREE.DoubleSide,
-    transparent: true,
-    opacity: 0.08
-  });
-  const ring = new THREE.Mesh(ringGeo, ringMat);
-  ring.rotation.x = Math.PI / 3;
-  ambientGroup.add(ring);
-
-  // Gentle Parallax & Scroll Integration
-  let targetRotX = 0;
-  let targetRotY = 0;
-  let scrollY = window.pageYOffset;
-
-  window.addEventListener("mousemove", (e) => {
-    const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-    const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-    targetRotY = mouseX * 0.25;
-    targetRotX = -mouseY * 0.2;
+    opacity: 0.35,
+    sizeAttenuation: true,
   });
 
-  window.addEventListener("scroll", () => {
-    scrollY = window.pageYOffset;
-  }, { passive: true });
+  const particles = new THREE.Points(particleGeo, particleMat);
+  scene.add(particles);
+
+  // Very slow drift — no mouse tracking, no spinning shape
+  let elapsed = 0;
 
   const handleResize = () => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    camera.aspect = width / height;
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    camera.aspect = w / h;
     camera.updateProjectionMatrix();
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(width, height);
-
-    if (width < 768) {
-      ambientGroup.scale.setScalar(0.7);
-      ambientGroup.position.set(0, 0, 0);
-    } else {
-      ambientGroup.scale.setScalar(1.0);
-      ambientGroup.position.set(1.2, 0.2, 0);
-    }
+    renderer.setSize(w, h);
   };
-
   window.addEventListener("resize", handleResize);
-  handleResize();
 
-  // Animation Loop (Quiet, smooth, high-frame-rate)
   const animate = () => {
     requestAnimationFrame(animate);
-
     if (!reducedMotion) {
-      const scrollRotation = scrollY * 0.0008;
-      targetRotY += 0.001;
-
-      ambientGroup.rotation.y += (targetRotY + scrollRotation - ambientGroup.rotation.y) * 0.05;
-      ambientGroup.rotation.x += (targetRotX - ambientGroup.rotation.x) * 0.05;
-
-      ring.rotation.z += 0.0015;
+      elapsed += 0.001;
+      // Each particle drifts upward slowly and wraps around
+      const pos = particleGeo.attributes.position.array;
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        pos[i * 3 + 1] += speeds[i];
+        if (pos[i * 3 + 1] > 7) pos[i * 3 + 1] = -7;
+      }
+      particleGeo.attributes.position.needsUpdate = true;
+      // Very subtle global sway
+      particles.rotation.y = Math.sin(elapsed * 0.4) * 0.04;
     }
-
     renderer.render(scene, camera);
   };
-
   animate();
 });
