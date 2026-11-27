@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const typeTarget = document.getElementById("type-line-text");
   const phrases = [
     "Computer Engineering @ UNLP · Systems & Security",
-    "Former CTO @ OrbitUp · +800 production users",
+    "Former CTO @ OrbitUp · 1.5 years leading production systems",
     "From Linux low-level to resilient AI architectures",
     "Building verifiable software from the silicon up"
   ];
