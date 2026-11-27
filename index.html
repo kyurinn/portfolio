@@ -3,264 +3,438 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mateo Cioppa — Portfolio</title>
-  <meta name="description" content="Builder, founder, and computer engineering student focused on AI-first products." />
+  <title>Mateo Cioppa — Computer Engineering, Systems & AI</title>
+  <meta name="description" content="Computer Engineering student @ UNLP. Former startup CTO at OrbitUp. Focused on low-level systems, cybersecurity, and applied AI." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Hanken+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Hanken+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./assets/css/main.css" />
 </head>
 <body>
+  <!-- Ambient 3D Cybernetic Canvas & Overlays -->
   <div id="world" aria-hidden="true"></div>
   <div class="paper" aria-hidden="true"></div>
   <div class="scan" aria-hidden="true"></div>
 
+  <!-- Header / Navigation Bar -->
   <header class="site-header">
-    <a class="brand" href="#"><span class="dot"></span> SYSTEM.ONLINE</a>
-    <nav class="site-nav" id="site-nav">
-      <button data-open="about">About me</button>
-      <button data-open="work">What I build</button>
-      <button data-open="stack">What I know</button>
-      <button data-open="contact">Talk to me</button>
-    </nav>
+    <a class="brand" href="#hero">
+      <span class="dot"></span> SYSTEM.ONLINE // KNN
+    </a>
+
+    <div class="header-right">
+      <nav class="site-nav" id="site-nav">
+        <a href="#work">01. Work</a>
+        <a href="#story">02. Story</a>
+        <a href="#stack">03. Stack</a>
+        <a href="#contact">04. Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="pill-link" href="https://github.com/kyurinn" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        <a class="pill-link" href="https://www.linkedin.com/in/mateo-cioppa/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <a class="pill-link" href="./cv.html" target="_blank" rel="noopener noreferrer">CV ↗</a>
+      </div>
+
+      <button class="menu-btn" id="menu-btn" aria-label="Toggle menu" aria-expanded="false">Menu</button>
+    </div>
   </header>
 
-  <main class="hud" id="hud">
-    <div class="hud-index"><span class="label">AI Engineer</span><span class="bar"></span></div>
-    <h1 class="name">Mateo <em>Cioppa</em></h1>
-    <p class="kicker">Est. Argentina // Builder & Founder</p>
-    <p class="type-line"><span class="type-pre">→</span> <span id="type-line-text"></span></p>
-  </main>
+  <!-- Main Scrollable Content -->
+  <div class="content-wrapper">
 
-  <div class="hotspots" id="hotspots">
-    <button class="hotspot" data-open="about"><span></span>Architecture</button>
-    <button class="hotspot" data-open="work"><span></span>Execution</button>
-    <button class="hotspot" data-open="stack"><span></span>Stack</button>
-    <button class="hotspot" data-open="contact"><span></span>Network</button>
-  </div>
-
-  <aside class="panel" id="panel-about" aria-hidden="true">
-    <button class="panel-close" data-close>Close ✕</button>
-    <div class="sec-head">
-      <h2>About <em>me</em></h2>
-      <p class="panel-mark">Architecture</p>
-    </div>
-    
-    <div class="meta">
-      <div class="meta-cols">
-        <div><span class="label">Field</span><b>AI Systems<br>Product Engineering</b></div>
-        <div><span class="label">Based</span><b>Argentina</b></div>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="hero-status">
+        <span class="bar"></span>
+        <span>COMPUTER ENGINEERING @ UNLP // FORMER STARTUP CTO</span>
       </div>
-      <p class="disc-line">Software Engineering <span class="s">//</span> Product Strategy <span class="s">//</span> Scalability <span class="s">//</span> Growth</p>
-    </div>
-    
-    <div style="margin-top: 38px; border-top: 1px solid var(--line); padding-top: 38px;">
-      <p style="margin-bottom: 16px;">I combine product intuition with engineering discipline: from concept, to architecture, to deployment. I focus on modern digital experiences with AI at the core.</p>
-      <p>I build AI products that turn messy workflows into clear outcomes. Currently focusing my efforts on scaling EdTech solutions as the Co-founder of OrbitUp.</p>
-    </div>
-  </aside>
 
-  <aside class="panel" id="panel-work" aria-hidden="true">
-    <button class="panel-close" data-close>Close ✕</button>
-    <div class="sec-head">
-      <h2>What I <em>build</em></h2>
-      <p class="panel-mark">Execution</p>
-    </div>
-    
-    <!-- MASTER VIEW: Selectable Cards -->
-    <div id="projects-list" class="projects-grid">
-      <div class="project-card-btn" data-project="orbitup">
-        <h3>OrbitUp <em>Ecosystem</em></h3>
-        <p>The EdTech platform I co-founded. Built end-to-end to accompany students with an AI that truly teaches.</p>
-        <div class="tagrow" style="margin-bottom: 20px;">
-          <span class="tag">Mobile App</span><span class="tag">Web App</span><span class="tag">Backend</span><span class="tag">AI Generation</span>
-        </div>
-        <div class="card-preview">
-          <img src="./assets/img/orbitup-landing.png" alt="OrbitUp Preview" onerror="this.style.display='none'">
+      <h1 class="hero-name">Mateo <em>Cioppa</em></h1>
+
+      <p class="hero-kicker">
+        Systems Engineering • Low-Level Architecture • Applied AI & Security
+      </p>
+
+      <p class="hero-lead">
+        Co-founder and former CTO of OrbitUp. Shipped mission-critical EdTech software to over 800 active university users across iOS and Android. Currently mastering systems from the silicon up.
+      </p>
+
+      <p class="type-line">
+        <span class="type-pre">→</span>
+        <span id="type-line-text"></span>
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#work">Selected Work ↓</a>
+        <a class="btn btn-secondary" href="#story">The Journey ↓</a>
+        <a class="btn btn-ghost" href="https://github.com/kyurinn" target="_blank" rel="noopener noreferrer">GitHub Profile ↗</a>
+        <a class="btn btn-ghost" href="./cv.html" target="_blank" rel="noopener noreferrer">Open CV ↗</a>
+      </div>
+    </section>
+
+    <!-- 01. SELECTED WORK & SYSTEMS -->
+    <section class="content-section" id="work">
+      <div class="section-head">
+        <div>
+          <span class="section-badge">// 01. Selected Work</span>
+          <h2 class="section-title">Built for <em>Production</em></h2>
         </div>
       </div>
 
-      <div class="project-card-btn" data-project="agentic">
-        <h3>Agentic <em>Systems</em></h3>
-        <p>Designing workflows where AI agents handle repetitive operations, leveraging frontier LLMs.</p>
-        <div class="tagrow" style="margin-bottom: 20px;">
-          <span class="tag">Claude Code</span><span class="tag">Gemini API</span><span class="tag">Automation</span>
-        </div>
-        <div class="card-preview">
-          <pre><span class="k">$</span> vercel deploy --prod
-<span class="o">Vercel CLI 32.0.1</span>
-<span class="o">Building project...</span>
-<span class="o">✓ Edge Functions compiled successfully</span></pre>
-        </div>
-      </div>
-    </div>
+      <div class="work-grid">
 
-    <!-- DETAIL VIEW: Hidden by default -->
-    <div id="project-details" style="display: none;">
-      <button id="back-to-projects" class="lk" style="padding: 0 0 20px 0; border: none; width: auto; margin-bottom: 20px;">
-        <span class="arr" style="transform: rotate(180deg); display: inline-block;">↗</span>
-        <span class="handle" style="font-size: 1.1rem; margin-left: 12px;">Back to projects</span>
-      </button>
-
-      <!-- DETAIL: OrbitUp -->
-      <div id="detail-orbitup" class="project-detail-view" style="display: none;">
-        <div class="work-item" style="border: none; padding-top: 0;">
-          <div class="txt">
-            <div class="w-idx">FLAGSHIP STARTUP</div>
-            <h3>OrbitUp <em>Ecosystem</em></h3>
-            <p>The EdTech platform I co-founded. Built end-to-end to accompany students with an AI that truly teaches. This encompasses the landing page, the web/mobile app, and the internal tooling.</p>
-          </div>
-          
-          <!-- Landing Page -->
-          <div class="plate" style="padding: 0; background: #000; margin-top: 10px;">
-            <div class="p-head">
-              <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
-              <div class="p-title">orbitup.app</div>
-            </div>
-            <img src="./assets/img/orbitup-landing.png" alt="OrbitUp Landing Page" style="width: 100%; display: block; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; opacity: 0.9;" onerror="this.style.display='none'" />
+        <!-- PROJECT 1: OrbitUp Ecosystem -->
+        <article class="work-card">
+          <div class="work-tag">Flagship Startup // EdTech Scale</div>
+          <div class="work-header">
+            <h3 class="work-title">OrbitUp <em>Ecosystem</em></h3>
+            <span class="work-role">Co-founder &amp; ex-CTO (2025–2026)</span>
           </div>
 
-          <!-- Linear Clone / Dev Board -->
-          <div class="plate" style="padding: 0; background: #000; margin-top: 10px;">
-            <div class="p-head">
-              <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
-              <div class="p-title">OrbitUp Dev Board (Linear Clone)</div>
+          <p class="work-desc">
+            Led technology and engineering from zero to production. Designed and delivered a high-availability learning ecosystem for university students, managing cross-platform mobile clients, administrative web dashboards, continuous delivery pipelines, and AI-driven study tooling.
+          </p>
+
+          <div class="metrics-row">
+            <div class="metric-item">
+              <strong>+800</strong>
+              <span>Registered Students</span>
             </div>
-            <img src="./assets/img/linear-board.png" alt="OrbitUp Dev Board" style="width: 100%; display: block; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; opacity: 0.9;" onerror="this.style.display='none'" />
+            <div class="metric-item">
+              <strong>+3,000</strong>
+              <span>Automated Tests (CI)</span>
+            </div>
+            <div class="metric-item">
+              <strong>App Stores</strong>
+              <span>iOS &amp; Android Published</span>
+            </div>
+            <div class="metric-item">
+              <strong>Weekly</strong>
+              <span>Zero-downtime Releases</span>
+            </div>
           </div>
 
-          <!-- Web App (Practica) -->
-          <div class="plate" style="padding: 0; background: #000; margin-top: 10px;">
-            <div class="p-head">
-              <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
-              <div class="p-title">app.orbitup.app</div>
+          <ul class="feature-list">
+            <li><strong>Cross-Platform Architecture:</strong> Shipped a React Native (Expo) native mobile app to the Apple App Store and Google Play, coupled with 3 administrative and student web applications (React).</li>
+            <li><strong>Backend &amp; Data Pipeline:</strong> Multi-tenant Node.js and Express backend on Railway with MongoDB/Mongoose, handling secure JWT authentication, session invalidation, and real-time student analytics.</li>
+            <li><strong>Quality Engineering &amp; CI/CD:</strong> Maintained strict engineering discipline with dev/staging/prod isolation and an automated test suite of over 3,000 unit, integration, and contract tests before each production deploy.</li>
+            <li><strong>AI-Assisted Learning Features:</strong> Integrated generative LLM endpoints with structured JSON outputs and domain verification for exam preparation, study guides, and academic assistance.</li>
+          </ul>
+
+          <!-- Showcase Gallery -->
+          <div class="media-showcase">
+            <div class="showcase-tabs">
+              <button class="showcase-tab active" data-orbit-tab="landing">Landing Page</button>
+              <button class="showcase-tab" data-orbit-tab="app">Mobile App</button>
+              <button class="showcase-tab" data-orbit-tab="board">Dev Board (Linear Clone)</button>
             </div>
-            <img src="./assets/img/orbitup-app.png" alt="OrbitUp Web App" style="width: 100%; display: block; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; opacity: 0.9;" onerror="this.style.display='none'" />
+            <div class="showcase-viewport">
+              <img class="showcase-img active" data-orbit-img="landing" src="./assets/img/orbitup-landing.png" alt="OrbitUp Landing Page" loading="lazy" />
+              <img class="showcase-img" data-orbit-img="app" src="./assets/img/orbitup-app.png" alt="OrbitUp Mobile App Interface" loading="lazy" />
+              <img class="showcase-img" data-orbit-img="board" src="./assets/img/linear-board.png" alt="OrbitUp Dev Engineering Board" loading="lazy" />
+            </div>
           </div>
 
-          <div class="plate" style="margin-top: 10px;">
+          <div class="hero-actions" style="margin-top: 24px;">
+            <a class="btn btn-secondary" href="https://apps.apple.com/ar/app/orbitup/id6756928952" target="_blank" rel="noopener noreferrer">App Store ↗</a>
+            <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.orbitup.mobile" target="_blank" rel="noopener noreferrer">Google Play ↗</a>
+          </div>
+
+          <div class="tag-row">
+            <span class="tag">React Native</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Express</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">Railway</span>
+            <span class="tag">Vercel</span>
+            <span class="tag">Jest (+3k tests)</span>
+            <span class="tag">CI/CD</span>
+            <span class="tag">LLM Integration</span>
+          </div>
+        </article>
+
+        <!-- PROJECT 2: Agentic Study Engine -->
+        <article class="work-card">
+          <div class="work-tag">Applied AI // Cognitive Architecture</div>
+          <div class="work-header">
+            <h3 class="work-title">Agentic <em>Study Engine</em></h3>
+            <span class="work-role">Production LLM Pipeline &amp; Tooling</span>
+          </div>
+
+          <p class="work-desc">
+            Engineered reliable production AI pipelines moving far beyond naive prompts. Implemented structured schema validation, deterministic fallback logic, and cognitive neuroscience principles (spaced repetition, cognitive load management) to generate verifiable academic materials.
+          </p>
+
+          <div class="plate">
             <div class="p-head">
-              <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
-              <div class="p-title">orbitup_metrics.js</div>
+              <div class="p-dots"><span class="p-dot r"></span><span class="p-dot y"></span><span class="p-dot g"></span></div>
+              <div class="p-title">agent_pipeline_runtime.json</div>
             </div>
-            <pre class="p-body"><span class="k">import</span> { AppMetrics, Analytics } <span class="k">from</span> <span class="s">'@orbitup/core'</span>;
-
-<span class="k">const</span> stats = <span class="k">await</span> AppMetrics.<span class="f">getWeekly</span>();
-
-<span class="f">console</span>.<span class="f">log</span>(<span class="s">`Active Users: <span class="o">${stats.users}</span>`</span>);
-<span class="f">console</span>.<span class="f">log</span>(<span class="s">`Tests Delivered: <span class="o">${stats.tests}</span>`</span>);
-
-<span class="c">// => Active Users: 800+</span>
-<span class="c">// => Tests Delivered: 3,000+</span>
-
-<span class="k">if</span> (stats.growth > <span class="n">0.1</span>) {
-  Analytics.<span class="f">triggerEvent</span>(<span class="s">"Scaling infrastructure..."</span>);
+            <pre class="p-body"><span class="c">// Enforcing strict JSON schema validation &amp; cognitive load limits</span>
+{
+  <span class="s">"agent_status"</span>: <span class="s">"ONLINE"</span>,
+  <span class="s">"model"</span>: <span class="s">"gemini-2.5-pro / claude-3-5-sonnet"</span>,
+  <span class="s">"pipeline"</span>: [
+    <span class="s">"1. Universal Multi-source Ingestion (PDF, MD, Code, Transcripts)"</span>,
+    <span class="s">"2. Baseline Knowledge Assessment &amp; Adaptive Roadmap"</span>,
+    <span class="s">"3. Socratic Dialogue Loop (25-30 min cognitive load clamp)"</span>,
+    <span class="s">"4. FSRS / Spaced Repetition Scheduling Engine"</span>
+  ],
+  <span class="s">"schema_validation"</span>: <span class="k">true</span>,
+  <span class="s">"hallucination_control"</span>: <span class="s">"grounded_verification"</span>,
+  <span class="s">"latency_p95"</span>: <span class="n">480</span> <span class="c">/* ms */</span>
 }</pre>
           </div>
-        </div>
-      </div>
 
-      <!-- DETAIL: Agentic Systems -->
-      <div id="detail-agentic" class="project-detail-view" style="display: none;">
-        <div class="work-item" style="border: none; padding-top: 0;">
-          <div class="txt">
-            <div class="w-idx">PRODUCTION PIPELINES</div>
-            <h3>Agentic <em>Systems</em></h3>
-            <p>Designing workflows where AI agents handle repetitive operations, leveraging tools like Claude Code and Gemini API to maximize velocity.</p>
+          <div class="tag-row">
+            <span class="tag">Gemini API</span>
+            <span class="tag">Claude Code</span>
+            <span class="tag">JSON Schema Validation</span>
+            <span class="tag">Cognitive Architecture</span>
+            <span class="tag">Spaced Repetition (FSRS)</span>
+            <span class="tag">Python</span>
           </div>
-          <div class="plate" style="margin-top: 10px;">
+        </article>
+
+        <!-- PROJECT 3: Cyber & Systems Security Toolkit -->
+        <article class="work-card">
+          <div class="work-tag">Low-Level &amp; Security // Verifiable Code</div>
+          <div class="work-header">
+            <h3 class="work-title">Cyber &amp; Systems <em>Security Toolkit</em></h3>
+            <span class="work-role">Forensics, Network &amp; Integrity Suite</span>
+          </div>
+
+          <p class="work-desc">
+            A modular suite of systems and security utilities implemented in Python and C. Built for Linux administrators and security analysts to automate log forensic auditing, memory-efficient hash verification, multithreaded network socket reconnaissance, and entropy analysis.
+          </p>
+
+          <div class="plate">
             <div class="p-head">
-              <div class="p-dots"><span class="p-dot r"></span><span class="p-dot"></span><span class="p-dot"></span></div>
-              <div class="p-title">bash: deployment</div>
+              <div class="p-dots"><span class="p-dot r"></span><span class="p-dot y"></span><span class="p-dot g"></span></div>
+              <div class="p-title">knn@archlinux:~/security-tools$ ./sec_toolkit.py --run-all</div>
             </div>
-            <pre class="p-body"><span class="k">$</span> vercel deploy --prod
+            <pre class="p-body"><span class="k">[+]</span> Running SSH Brute-Force Log Parser (/var/log/auth.log)...
+    <span class="s">-></span> Identified 42 unauthorized attempts from 192.168.1.105 (Flagged aggressive)
+<span class="k">[+]</span> Computing Chunked SHA-256 (64KB blocks, O(1) RAM)...
+    <span class="s">-></span> Hash verified: <span class="n">e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</span>
+<span class="k">[+]</span> High-Throughput Port Scanner (BSD Sockets, ThreadPoolExecutor)...
+    <span class="s">-></span> Host 10.0.0.1: Port 22/tcp [OPEN], Port 443/tcp [OPEN], Port 8080/tcp [FILTERED]
+<span class="k">[+]</span> Shannon Entropy Metric ($H = -\sum p_i \log_2 p_i$)...
+    <span class="s">-></span> Calculated $H = 7.94$ bits/byte <span class="c">(High entropy: payload appears encrypted/packed)</span>
+<span class="f">[SUCCESS]</span> Forensic report exported to integrity_audit.json</pre>
+          </div>
 
-<span class="o">Vercel CLI 32.0.1</span>
-<span class="o">Building project...</span>
-<span class="o">✓ Edge Functions compiled successfully</span>
-<span class="o">✓ Deployment complete.</span>
-<span class="o">URL: https://mateocioppa.com</span>
+          <div class="hero-actions" style="margin-top: 24px;">
+            <a class="btn btn-secondary" href="https://github.com/kyurinn" target="_blank" rel="noopener noreferrer">View Repositories on GitHub ↗</a>
+          </div>
 
-<span class="k">$</span> git commit -m <span class="s">"Shipped new AI features"</span>
-<span class="k">$</span> git push origin main</pre>
+          <div class="tag-row">
+            <span class="tag">Linux Sockets</span>
+            <span class="tag">Python 3</span>
+            <span class="tag">C</span>
+            <span class="tag">SHA-256</span>
+            <span class="tag">Shannon Entropy</span>
+            <span class="tag">Log Forensics</span>
+            <span class="tag">POSIX</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 02. THE JOURNEY (STORY) -->
+    <section class="content-section" id="story">
+      <div class="section-head">
+        <div>
+          <span class="section-badge">// 02. The Journey</span>
+          <h2 class="section-title">The Engineering <em>Arc</em></h2>
+        </div>
+      </div>
+
+      <div class="story-timeline">
+
+        <!-- Chapter 1 -->
+        <article class="story-chapter">
+          <div class="story-dot"></div>
+          <div class="story-meta">Phase 01 // 2024 - 2026</div>
+          <h3 class="story-headline">The Startup Crucible (OrbitUp)</h3>
+          <p class="story-text">
+            Taking OrbitUp from a clean repository to a venture-backed EdTech platform serving over 800 active university students taught me how software truly behaves in the wild. As sole full-time developer and CTO, I couldn't hide behind abstractions: I had to ship, monitor, debug, and scale.
+          </p>
+          <p class="story-text">
+            I built our mobile client in React Native, our backend in Node.js, and established a culture of shipping weekly with dev/staging/prod isolation backed by a suite of over 3,000 automated tests. But shipping fast taught me an even deeper truth: high-level frameworks make it easy to build, but fragile to troubleshoot. To build truly secure and resilient systems, you have to understand the machine underneath.
+          </p>
+        </article>
+
+        <!-- Chapter 2 -->
+        <article class="story-chapter">
+          <div class="story-dot"></div>
+          <div class="story-meta">Phase 02 // Academic Foundation</div>
+          <h3 class="story-headline">The Silicon Foundations (Computer Engineering @ UNLP)</h3>
+          <p class="story-text">
+            I chose Computer Engineering at the Universidad Nacional de La Plata (UNLP) to dismantle the black boxes. I committed to mastering computation from the silicon up: computer architecture, Von Neumann designs, x86 assembly language, CPU registers, instruction pipelines, and memory hierarchies.
+          </p>
+          <p class="story-text">
+            Learning how the operating system manages page tables, virtual memory, POSIX signals, file descriptor tables, and process scheduling fundamentally reshaped my engineering instincts. Knowing how a buffer overflow happens in memory makes you write dramatically better, more secure software at every layer of the stack.
+          </p>
+        </article>
+
+        <!-- Chapter 3 -->
+        <article class="story-chapter">
+          <div class="story-dot"></div>
+          <div class="story-meta">Phase 03 // Present Frontier</div>
+          <h3 class="story-headline">The Convergence: Systems, Security &amp; Applied AI</h3>
+          <p class="story-text">
+            Today, I bridge both perspectives: the rapid execution, product discipline, and user-centric mindset of a startup founder with the technical rigor of a systems engineer. 
+          </p>
+          <p class="story-text">
+            My active focus centers on low-level Linux systems, network protocol inspection with Wireshark, offensive and defensive challenge solving (OverTheWire Bandit), and applied artificial intelligence—designing autonomous agent pipelines that operate under strict deterministic constraints, validated schemas, and secure execution boundaries.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- 03. TECHNICAL ARSENAL (STACK) -->
+    <section class="content-section" id="stack">
+      <div class="section-head">
+        <div>
+          <span class="section-badge">// 03. Technical Arsenal</span>
+          <h2 class="section-title">Tools &amp; <em>Proficiency</em></h2>
+        </div>
+      </div>
+
+      <div class="stack-quadrants">
+
+        <!-- Quadrant 1 -->
+        <div class="stack-box">
+          <div class="stack-box-head">01. Systems &amp; Low-Level</div>
+          <div class="stack-chips">
+            <div class="stack-chip"><span>Linux (POSIX, FHS, Bash)</span><span class="sub">Core OS</span></div>
+            <div class="stack-chip"><span>C Language</span><span class="sub">Pointers / Mem</span></div>
+            <div class="stack-chip"><span>Assembly x86</span><span class="sub">Von Neumann</span></div>
+            <div class="stack-chip"><span>TCP/IP &amp; Wireshark</span><span class="sub">Packets</span></div>
+            <div class="stack-chip"><span>BSD Sockets</span><span class="sub">Networking</span></div>
+          </div>
+        </div>
+
+        <!-- Quadrant 2 -->
+        <div class="stack-box">
+          <div class="stack-box-head">02. Security &amp; Forensics</div>
+          <div class="stack-chips">
+            <div class="stack-chip"><span>SHA-256 / MD5 Hashing</span><span class="sub">Crypto</span></div>
+            <div class="stack-chip"><span>Log Forensics &amp; Regex</span><span class="sub">Blue Team</span></div>
+            <div class="stack-chip"><span>Shannon Entropy Analysis</span><span class="sub">Math</span></div>
+            <div class="stack-chip"><span>Session / Auth Security</span><span class="sub">JWT / CSRF</span></div>
+            <div class="stack-chip"><span>Bandit (OverTheWire)</span><span class="sub">Labs</span></div>
+          </div>
+        </div>
+
+        <!-- Quadrant 3 -->
+        <div class="stack-box">
+          <div class="stack-box-head">03. Software &amp; Scale</div>
+          <div class="stack-chips">
+            <div class="stack-chip"><span>Node.js / Express</span><span class="sub">Backend</span></div>
+            <div class="stack-chip"><span>React Native (Expo)</span><span class="sub">Mobile</span></div>
+            <div class="stack-chip"><span>TypeScript / JavaScript</span><span class="sub">Fullstack</span></div>
+            <div class="stack-chip"><span>React &amp; Tailwind</span><span class="sub">Web UI</span></div>
+            <div class="stack-chip"><span>MongoDB / Mongoose</span><span class="sub">Data</span></div>
+          </div>
+        </div>
+
+        <!-- Quadrant 4 -->
+        <div class="stack-box">
+          <div class="stack-box-head">04. DevOps, AI &amp; Tooling</div>
+          <div class="stack-chips">
+            <div class="stack-chip"><span>Automated Testing (Jest)</span><span class="sub">+3k Tests</span></div>
+            <div class="stack-chip"><span>CI/CD &amp; Git Workflows</span><span class="sub">Pipelines</span></div>
+            <div class="stack-chip"><span>Railway &amp; Vercel</span><span class="sub">Cloud</span></div>
+            <div class="stack-chip"><span>Gemini API &amp; Claude</span><span class="sub">Frontier AI</span></div>
+            <div class="stack-chip"><span>Neovim / CLI Workflow</span><span class="sub">Terminal</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 04. NETWORK & CONTACT -->
+    <section class="content-section" id="contact">
+      <div class="section-head">
+        <div>
+          <span class="section-badge">// 04. Network &amp; Terminal</span>
+          <h2 class="section-title">Let's Build <em>Something Sharp</em></h2>
+        </div>
+      </div>
+
+      <div class="contact-terminal">
+        <div class="p-head">
+          <div class="p-dots"><span class="p-dot r"></span><span class="p-dot y"></span><span class="p-dot g"></span></div>
+          <div class="p-title">bash: knn@la-plata:~$ ./contact.sh</div>
+        </div>
+
+        <div class="contact-body">
+          <h3 class="contact-msg">Open to high-impact technical challenges.</h3>
+          <p class="contact-sub">
+            Whether you are building complex systems, hardening security architectures, deploying robust AI pipelines, or looking for an engineer with startup-tested grit: let's connect.
+          </p>
+
+          <div class="contact-links-grid">
+
+            <a class="contact-card" href="mailto:mateo.cioppa1@gmail.com?subject=Let%27s%20work%20together">
+              <div>
+                <span class="label">Direct Email</span>
+                <span class="value">mateo.cioppa1@gmail.com</span>
+              </div>
+              <span class="arrow">↗</span>
+            </a>
+
+            <a class="contact-card" href="https://www.linkedin.com/in/mateo-cioppa/" target="_blank" rel="noopener noreferrer">
+              <div>
+                <span class="label">Professional Network</span>
+                <span class="value">linkedin.com/in/mateo-cioppa</span>
+              </div>
+              <span class="arrow">↗</span>
+            </a>
+
+            <a class="contact-card" href="https://github.com/kyurinn" target="_blank" rel="noopener noreferrer">
+              <div>
+                <span class="label">Code &amp; Repositories</span>
+                <span class="value">github.com/kyurinn</span>
+              </div>
+              <span class="arrow">↗</span>
+            </a>
+
+            <a class="contact-card" href="./cv.html" target="_blank" rel="noopener noreferrer">
+              <div>
+                <span class="label">Curriculum Vitae</span>
+                <span class="value">Open Full CV</span>
+              </div>
+              <span class="arrow">↗</span>
+            </a>
+
+            <div class="contact-card">
+              <div>
+                <span class="label">Location</span>
+                <span class="value">La Plata / Buenos Aires (UTC-3)</span>
+              </div>
+              <span class="arrow" style="color: var(--muted);">●</span>
+            </div>
+
           </div>
         </div>
       </div>
-    </div>
-  </aside>
+    </section>
 
-  <aside class="panel" id="panel-stack" aria-hidden="true">
-    <button class="panel-close" data-close>Close ✕</button>
-    <div class="sec-head">
-      <h2>What I <em>know</em></h2>
-      <p class="panel-mark">Stack</p>
-    </div>
-    
-    <div style="margin-bottom: 24px; font-family: 'JetBrains Mono', monospace; font-size: 0.64rem; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase;">
-      Core Technologies
-    </div>
-    <div class="stack-grid">
-      <div class="stack-card">Node.js</div>
-      <div class="stack-card">React Native (Expo)</div>
-      <div class="stack-card">React</div>
-      <div class="stack-card">TypeScript</div>
-      <div class="stack-card">JavaScript</div>
-      <div class="stack-card">Python</div>
-      <div class="stack-card">MongoDB</div>
-      <div class="stack-card">Vercel</div>
-      <div class="stack-card">Railway</div>
-      <div class="stack-card">Claude Code</div>
-      <div class="stack-card">Gemini API</div>
-      <div class="stack-card">Git</div>
-    </div>
-  </aside>
+    <!-- Site Footer -->
+    <footer class="site-footer">
+      <div>© <span id="year"></span> Mateo Cioppa // All rights reserved.</div>
+      <div>Designed with engineering discipline &amp; low-overhead web standards.</div>
+    </footer>
 
-  <aside class="panel" id="panel-contact" aria-hidden="true">
-    <button class="panel-close" data-close>Close ✕</button>
-    <div class="sec-head">
-      <h2>Talk to <em>me</em></h2>
-      <p class="panel-mark">Network</p>
-    </div>
-    
-    <div style="margin-top: 40px; margin-bottom: 40px;">
-      <h2 style="font-size: clamp(2.2rem, 6vw, 3.5rem); margin-bottom: 10px;">Let's build<br>something <em>sharp.</em></h2>
-      <p style="color: var(--text);">If you're hiring or building a serious product, I'm in.</p>
-    </div>
-    
-    <div class="links">
-      <a class="lk" href="mailto:mateo.cioppa1@gmail.com?subject=Let%27s%20work%20together">
-        <div>
-          <div class="plat">Email</div>
-          <div class="handle">mateo.cioppa1@gmail.com</div>
-        </div>
-        <span class="arr">↗</span>
-      </a>
-      <a class="lk" href="https://apps.apple.com/ar/app/orbitup/id6756928952" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="plat">OrbitUp</div>
-          <div class="handle">App Store</div>
-        </div>
-        <span class="arr">↗</span>
-      </a>
-      <a class="lk" href="https://play.google.com/store/apps/details?id=com.orbitup.mobile" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="plat">OrbitUp</div>
-          <div class="handle">Google Play</div>
-        </div>
-        <span class="arr">↗</span>
-      </a>
-      <a class="lk" href="./cv.html" target="_blank" rel="noopener noreferrer">
-        <div>
-          <div class="plat">Resume</div>
-          <div class="handle">Open CV</div>
-        </div>
-        <span class="arr">↗</span>
-      </a>
-    </div>
-  </aside>
+  </div>
 
-  <p class="status-line">neural atlas <b>//</b> drag to rotate · click nodes</p>
-
+  <!-- Three.js + Postprocessing Bloom Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
